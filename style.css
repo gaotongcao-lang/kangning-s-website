@@ -1273,9 +1273,10 @@ BLOG LIST IMAGE
     display: block !important;
     width: 36px !important;
     height: 36px !important;
-    object-fit: contain;
+    fill: #0A66C2 !important;
     opacity: 1 !important;
     visibility: visible !important;
+    flex-shrink: 0;
 }
 
 

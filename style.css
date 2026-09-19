@@ -369,18 +369,20 @@ ABOUT
     width: min(94vw, 1400px);
     margin-inline: auto;
     padding: 70px 0;
-    display: flex;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(500px, 600px);
     align-items: center;
-    justify-content: space-between;
-    gap: 70px;
+    gap: 80px;
 }
 
+
+/* 左边：照片 + 简介 */
+
 .about__left {
-    flex: 1;
-    min-width: 0;
     display: flex;
-    align-items: center;
-    gap: 55px;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .about__picture {
@@ -397,18 +399,21 @@ ABOUT
 
 .about__picture > img {
     border-radius: 50%;
-    margin-bottom: 0;
+    margin-bottom: 35px;
 }
 
+
+/* 简介 */
+
 .about__text {
-    flex: 1;
-    min-width: 0;
+    width: 100%;
+    max-width: 600px;
     position: relative;
     text-align: left;
 }
 
 .about__headline {
-    margin-bottom: 43px;
+    margin-bottom: 30px;
 }
 
 .about__description {
@@ -424,11 +429,11 @@ ABOUT
 }
 
 
-/* Brain placeholder */
+/* 右边：大脑 */
 
 .about__brain {
-    flex: 0 0 420px;
-    min-height: 500px;
+    width: 100%;
+    min-height: 600px;
 
     display: flex;
     align-items: center;
@@ -436,9 +441,10 @@ ABOUT
 }
 
 
-/* Animation */
+/* 动画 */
 
 @media (prefers-reduced-motion: no-preference) {
+
     .about__text {
         opacity: 0;
         animation: fade-in linear forwards;
@@ -454,17 +460,14 @@ ABOUT
 }
 
 
-/* Tablet */
+/* 平板 */
 
 @media (max-width: 1100px) {
 
     .about__wrapper {
         width: calc(100% - 3.75rem);
+        grid-template-columns: minmax(0, 1fr) 420px;
         gap: 40px;
-    }
-
-    .about__left {
-        gap: 30px;
     }
 
     .about__image {
@@ -473,27 +476,27 @@ ABOUT
     }
 
     .about__brain {
-        flex-basis: 350px;
-        min-height: 400px;
+        min-height: 450px;
     }
 }
 
 
-/* Mobile */
+/* 手机 */
 
 @media (max-width: 767px) {
 
     .about__wrapper {
         width: calc(100% - 2rem);
         padding: 50px 0;
+
+        display: flex;
         flex-direction: column;
-        gap: 50px;
+        gap: 55px;
     }
 
     .about__left {
         width: 100%;
-        flex-direction: column;
-        gap: 30px;
+        align-items: center;
     }
 
     .about__image {
@@ -501,8 +504,13 @@ ABOUT
         height: min(82vw, 500px);
     }
 
+    .about__picture > img {
+        margin-bottom: 30px;
+    }
+
     .about__text {
         width: 100%;
+        max-width: 600px;
         text-align: center;
     }
 
@@ -518,8 +526,7 @@ ABOUT
 
     .about__brain {
         width: 100%;
-        min-height: 350px;
-        flex-basis: auto;
+        min-height: 400px;
     }
 }
 

@@ -438,7 +438,17 @@ ABOUT
     align-items: center;
     justify-content: center;
 }
+.brain-map {
+    position: relative;
+    width: 480px;
+    max-width: 100%;
+}
 
+.brain-map__image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 .brain {
     width: min(100%, 600px);
     height: auto;

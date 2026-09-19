@@ -536,11 +536,11 @@ BRAIN WORDS — INTERACTIVE
 
 /* 保持每个分类自己的颜色 */
 
-.brain-map__link--life,
-.brain-map__link--life:hover,
-.brain-map__link--life:focus,
-.brain-map__link--life:active {
-    color: #7ED957;
+.brain-map__link--hobbies,
+.brain-map__link--hobbies:hover,
+.brain-map__link--hobbies:focus,
+.brain-map__link--hobbies:active {
+    color: #B69CFF;
 }
 
 .brain-map__link--work,
@@ -635,7 +635,6 @@ BRAIN WORDS — INTERACTIVE
     top: 70%;
     color: #B69CFF;
 }
-
 
 /* =========================
    TEXT FADE-IN

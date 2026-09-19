@@ -3,10 +3,10 @@ GLOBAL
 ========================================================= */
 
 :root {
-    --background: #0B1020;
-    --text-colour-white: #E8EEF7;
-    --link-hover: #6EE7F9;
-    --accent: #6EE7F9;
+    --background: #FFFFFF;
+    --text-colour-white: #1F2937;
+    --link-hover: #6B7280;
+    --accent: #1F2937;
     --invalid: hsl(7, 100%, 68%);
     --link-transition: 0.3s ease-in-out;
 
@@ -235,7 +235,7 @@ nav {
     content: "";
     width: 100%;
     height: var(--menu-icon-height);
-    background-color: white;
+    background-color: #1F2937;
     transition: var(--menu-icon-transition);
 }
 

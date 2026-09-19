@@ -1823,3 +1823,72 @@ body {
 /* =========================================================
 END
 ========================================================= */
+/* ========================================
+   FINAL POSITION + VISUAL TUNING
+======================================== */
+
+/* LIFE、EDUCATION 向右移动 */
+.brain-map__link--life {
+    left: 33% !important;
+}
+
+.brain-map__link--education {
+    left: 36% !important;
+}
+
+/* 手机上的对应位置 */
+@media (max-width: 560px) {
+    .brain-map__link--life {
+        left: 31% !important;
+    }
+
+    .brain-map__link--education {
+        left: 33% !important;
+    }
+}
+
+/* 整页背景：干净、明亮，不再有散乱的多色渐变 */
+body {
+    background: linear-gradient(
+        135deg,
+        #f8fafc 0%,
+        #ffffff 46%,
+        #f6f9ff 100%
+    ) !important;
+}
+
+/* About 区域右侧：只保留一层柔和蓝紫光，突出脑图 */
+.about {
+    overflow: hidden;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: min(60vw, 760px);
+    height: min(60vw, 760px);
+    right: -22vw;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(99, 199, 232, 0.16) 0%,
+        rgba(182, 156, 255, 0.09) 42%,
+        rgba(255, 255, 255, 0) 72%
+    );
+    filter: blur(12px);
+    pointer-events: none;
+}
+
+.about__wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* 标签字体和全站字体统一，减少“拼起来”的感觉 */
+.brain-map__link {
+    font-family: "Pathway Extreme", sans-serif !important;
+    letter-spacing: 0.02em !important;
+}

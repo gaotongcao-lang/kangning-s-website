@@ -924,13 +924,7 @@ CONTACT
     justify-content: center;
 }
 
-.contact__socials-item:first-child {
-    justify-content: flex-end;
-}
 
-.contact__socials-item:last-child {
-    justify-content: flex-start;
-}
 
 .contact__socials-item > a > img {
     display: block;

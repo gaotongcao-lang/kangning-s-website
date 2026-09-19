@@ -439,6 +439,55 @@ ABOUT
     justify-content: center;
 }
 
+.brain {
+    width: min(100%, 600px);
+    height: auto;
+    overflow: visible;
+}
+
+/* Brain regions */
+
+.brain__region {
+    fill: var(--accent);
+    fill-opacity: 0.18;
+    stroke: var(--text-colour-white);
+    stroke-width: 2;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        fill-opacity 0.25s ease,
+        filter 0.25s ease;
+    transform-origin: center;
+}
+
+/* Hover effect */
+
+.brain__region:hover {
+    fill-opacity: 0.45;
+    filter: brightness(1.2);
+    transform: scale(1.025);
+}
+
+/* Brain outline */
+
+.brain__outline {
+    fill: none;
+    stroke: var(--text-colour-white);
+    stroke-width: 4;
+}
+
+/* Brain folds */
+
+.brain__details {
+    fill: none;
+    stroke: var(--text-colour-white);
+    stroke-width: 3;
+    stroke-linecap: round;
+    opacity: 0.65;
+    pointer-events: none;
+}
+
 
 /* 动画 */
 
@@ -523,10 +572,15 @@ ABOUT
         margin-inline: auto;
     }
 
-    .about__brain {
-        width: 100%;
-        min-height: 400px;
-    }
+  .about__brain {
+    width: 100%;
+    min-height: 400px;
+    padding-inline: 10px;
+}
+
+.brain {
+    width: min(92vw, 520px);
+}
 }
 
 /* =========================================================

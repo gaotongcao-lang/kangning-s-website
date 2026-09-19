@@ -450,22 +450,18 @@ INTRO
 }
 
 
-/* =========================
-   BRAIN CATEGORY WORDS
-   ========================= */
+/* =========================================================
+BRAIN WORDS — INTERACTIVE
+========================================================= */
 
 .brain-map__link {
     position: absolute;
-
     z-index: 5;
 
     display: block;
 
     font-family: "Pathway Extreme", sans-serif;
-
-    /* 字体整体放大 */
     font-size: clamp(1.4rem, 2.8vw, 2rem);
-
     font-weight: 800;
 
     letter-spacing: 0.04em;
@@ -476,16 +472,58 @@ INTRO
 
     transform: translate(-50%, -50%);
 
+    /* 给文字留一点空间显示提示 */
+    padding-bottom: 18px;
+
     transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
+        transform 0.25s ease,
+        filter 0.25s ease;
 }
+
+
+/* 鼠标放上去 */
 
 .brain-map__link:hover {
     transform: translate(-50%, -50%) scale(1.1);
     filter: brightness(1.08);
 }
 
+
+/* 鼠标放上去以后出现的小提示 */
+
+.brain-map__link::after {
+    content: "explore";
+
+    position: absolute;
+
+    left: 50%;
+    top: 100%;
+
+    transform: translate(-50%, -4px);
+
+    font-family: "Pathway Extreme", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* Hover 时显示 explore */
+
+.brain-map__link:hover::after {
+    opacity: 0.75;
+    transform: translate(-50%, 0);
+}
 
 /* LIFE */
 

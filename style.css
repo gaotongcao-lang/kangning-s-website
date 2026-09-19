@@ -1267,7 +1267,16 @@ BLOG LIST IMAGE
 .bloglist__wrapper {
     padding-bottom: 40px;
 }
+/* LinkedIn icon fix */
 
+.socials__linkedin-icon {
+    display: block !important;
+    width: 36px !important;
+    height: 36px !important;
+    object-fit: contain;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 
 
 /* =========================================================

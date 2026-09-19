@@ -424,189 +424,139 @@ INTRO
 
 
 /* =========================
-   BRAIN AREA
-   ========================= */
+BRAIN AREA
+========================= */
 
 .about__brain {
     width: 100%;
     min-height: 560px;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/*
+  重点：
+  图片和四个文字都在 .brain-map 里面。
+  所以只允许 .brain-map 整体缩放。
+*/
 .brain-map {
     position: relative;
     width: 480px;
     max-width: 100%;
     margin-inline: auto;
 
-    /* 图片和四个文字一起缩放 */
     transform: scale(1);
     transform-origin: center center;
-    transition:
-        transform 0.45s ease,
-        filter 0.45s ease;
-    filter: brightness(1);
+    transition: transform 0.35s ease;
 }
 
+/* 鼠标放到整个脑图上时，图片和文字一起放大 */
+.brain-map:hover {
+    transform: scale(1.025);
+}
+
+/* 图片本身不允许再单独 transform 或 animation */
 .brain-map__image {
     display: block;
     width: 100%;
     height: auto;
     object-fit: contain;
+
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
 }
 
-/* 鼠标进入脑图：整个容器一起放大 */
-.brain-map:hover {
-    transform: scale(1.025);
-    filter: brightness(1.03);
-}
-
-/* =========================================================
-BRAIN WORDS — INTERACTIVE
-========================================================= */
+/* =========================
+BRAIN WORDS
+========================= */
 
 .brain-map__link {
     position: absolute;
     z-index: 5;
-
     display: block;
 
     font-family: "Pathway Extreme", sans-serif;
     font-size: clamp(1.4rem, 2.8vw, 2rem);
     font-weight: 800;
-
     letter-spacing: 0.04em;
     line-height: 1;
-
-    text-decoration: none;
     white-space: nowrap;
+    text-decoration: none;
 
-    transform: translate(-50%, -50%);
+    /*
+      所有文字固定为深色。
+      !important 是为了压过你前面原本的四色规则。
+    */
+    color: #1F2937 !important;
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
 
-    /* 给文字留一点空间显示提示 */
+    transform: translate(-50%, -50%) !important;
+    filter: none !important;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+
     padding-bottom: 18px;
-
-    transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
 }
 
-
-/* 鼠标放上去 */
-
+/*
+  不再放大文字。
+  原本 scale(1.1) 是圆框／文字在鼠标边缘反复进出时抽搐的主要原因。
+*/
 .brain-map__link:hover,
 .brain-map__link:focus,
-.brain-map__link:active {
-    transform: translate(-50%, -50%) scale(1.1);
-    filter: brightness(1.08);
+.brain-map__link:active,
+.brain-map__link:visited {
+    color: #1F2937 !important;
+    transform: translate(-50%, -50%) !important;
+    filter: none !important;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 1);
 }
 
-
-/* 保持每个分类自己的颜色 */
-
-/* 保持每个分类自己的颜色 */
-
-.brain-map__link--life,
-.brain-map__link--life:hover,
-.brain-map__link--life:focus,
-.brain-map__link--life:active {
-    color: #7ED957;
-}
-
-.brain-map__link--work,
-.brain-map__link--work:hover,
-.brain-map__link--work:focus,
-.brain-map__link--work:active {
-    color: #63C7E8;
-}
-
-.brain-map__link--education,
-.brain-map__link--education:hover,
-.brain-map__link--education:focus,
-.brain-map__link--education:active {
-    color: #FFD85A;
-}
-
-.brain-map__link--hobbies,
-.brain-map__link--hobbies:hover,
-.brain-map__link--hobbies:focus,
-.brain-map__link--hobbies:active {
-    color: #B69CFF;
-}
-
-
-/* 鼠标放上去以后出现的小提示 */
-
+/* explore 提示：只显示，不移动链接本身 */
 .brain-map__link::after {
     content: "explore";
-
     position: absolute;
-
     left: 50%;
     top: 100%;
-
     transform: translate(-50%, -4px);
 
     font-family: "Pathway Extreme", sans-serif;
     font-size: 0.65rem;
-    font-weight: 500;
-
+    font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: #1F2937;
 
     opacity: 0;
-
     pointer-events: none;
-
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+    transition: opacity 0.2s ease;
 }
 
-
-/* Hover 时显示 explore */
-
-.brain-map__link:hover::after {
-    opacity: 0.75;
-    transform: translate(-50%, 0);
+.brain-map__link:hover::after,
+.brain-map__link:focus-visible::after {
+    opacity: 0.8;
 }
 
-/* LIFE */
-
+/* 四个文字的位置：保留原本的脑图对应区域 */
 .brain-map__link--life {
     left: 25%;
     top: 48%;
-    color: #7ED957;
 }
-
-
-/* WORK */
 
 .brain-map__link--work {
     left: 73%;
     top: 48%;
-    color: #63C7E8;
 }
-
-
-/* EDUCATION */
 
 .brain-map__link--education {
     left: 49%;
     top: 23%;
-    color: #FFD85A;
 }
-
-
-/* HOBBIES */
 
 .brain-map__link--hobbies {
     left: 51%;
     top: 70%;
-    color: #B69CFF;
 }
 
 /* =========================
@@ -1759,7 +1709,117 @@ body {
         transition: none;
     }
 }
+/* ========================================
+   BRAIN MAP — FINAL FIX
+   必须放在 style.css 最后一行
+======================================== */
 
+/* 图片与文字使用同一个外层缩放 */
+.brain-map {
+    transform: scale(1) !important;
+    transform-origin: center center !important;
+    transition: transform 0.35s ease !important;
+}
+
+/* 鼠标进入脑图：图片和四个标签一起放大 */
+.brain-map:hover {
+    transform: scale(1.025) !important;
+}
+
+/* 禁止图片自己额外放大／呼吸，避免和父层缩放不同步 */
+.brain-map__image,
+.brain-map:hover .brain-map__image {
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
+}
+
+/* 所有标签：固定深色文字，位置以标签中心为准 */
+.brain-map__link,
+.brain-map__link:visited,
+.brain-map__link:hover,
+.brain-map__link:focus,
+.brain-map__link:active {
+    color: #263238 !important;
+    filter: none !important;
+
+    /*
+      关键：悬浮前后都保留 translate(-50%, -50%)。
+      所以只会放大，不会向右跳。
+    */
+    transform: translate(-50%, -50%) !important;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease !important;
+}
+
+/* 鼠标停在某个标签：只在原地放大，不上移、不右移 */
+.brain-map__link:hover,
+.brain-map__link:focus-visible {
+    transform: translate(-50%, -50%) scale(1.06) !important;
+    color: #263238 !important;
+    box-shadow:
+        0 10px 22px rgba(30, 40, 55, 0.16),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.96) !important;
+}
+
+/* 提示始终在标签正下方，且不会影响鼠标判定 */
+.brain-map__link::after {
+    left: 50% !important;
+    top: calc(100% + 5px) !important;
+    transform: translate(-50%, -4px) !important;
+    color: #263238 !important;
+    pointer-events: none !important;
+}
+
+.brain-map__link:hover::after,
+.brain-map__link:focus-visible::after {
+    opacity: 0.72 !important;
+    transform: translate(-50%, 0) !important;
+}
+
+/*
+  整组标签向右移动一点。
+  原来 LIFE / WORK / EDUCATION 太靠左；
+  HOBBIES 用 right 定位，所以把 right 减小让它往右。
+*/
+.brain-map__link--life {
+    left: 29% !important;
+}
+
+.brain-map__link--work {
+    left: 17% !important;
+}
+
+.brain-map__link--education {
+    left: 32% !important;
+}
+
+.brain-map__link--hobbies {
+    left: auto !important;
+    right: 0 !important;
+}
+
+/* 手机上的对应位置 */
+@media (max-width: 560px) {
+    .brain-map__link--life {
+        left: 27% !important;
+    }
+
+    .brain-map__link--work {
+        left: 14% !important;
+    }
+
+    .brain-map__link--education {
+        left: 29% !important;
+    }
+
+    .brain-map__link--hobbies {
+        left: auto !important;
+        right: -3% !important;
+    }
+}
 /* =========================================================
 END
 ========================================================= */

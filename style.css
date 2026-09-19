@@ -513,9 +513,10 @@ BRAIN WORDS — INTERACTIVE
     text-decoration: none;
     white-space: nowrap;
 
-    -webkit-text-stroke: 1px #111827;
-
     transform: translate(-50%, -50%);
+
+    /* 给文字留一点空间显示提示 */
+    padding-bottom: 18px;
 
     transition:
         transform 0.25s ease,

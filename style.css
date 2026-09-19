@@ -449,7 +449,7 @@ ABOUT
     }
 
     .about__picture {
-        order: 2;
+        order: 1;
     }
 
     .about__picture > img {

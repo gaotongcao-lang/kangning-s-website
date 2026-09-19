@@ -1891,3 +1891,8 @@ body {
     font-family: "Pathway Extreme", sans-serif !important;
     letter-spacing: 0.02em !important;
 }
+/* 照片保持静止，不做悬浮放大 */
+.about__picture:hover .about__image {
+    transform: none !important;
+    filter: none !important;
+}

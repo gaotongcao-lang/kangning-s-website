@@ -438,115 +438,166 @@ ABOUT
     align-items: center;
     justify-content: center;
 }
+/* =========================================================
+   INTERACTIVE BRAIN
+   ========================================================= */
+
+.about__brain {
+    width: 100%;
+    min-height: 560px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Brain container */
+
 .brain-map {
     position: relative;
+
     width: 480px;
     max-width: 100%;
+
     margin-inline: auto;
 }
+
+
+/* Brain image */
+
 .brain-map__image {
     display: block;
+
     width: 100%;
     height: auto;
+
+    object-fit: contain;
 }
+
+
+/* =========================================================
+   BRAIN WORDS
+   ========================================================= */
+
 .brain-map__link {
     position: absolute;
 
-    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    z-index: 5;
+
+    display: block;
+
+    font-family: "Pathway Extreme", sans-serif;
+    font-size: clamp(1.25rem, 2.3vw, 1.8rem);
     font-weight: 800;
-    letter-spacing: 0.08em;
+
+    letter-spacing: 0.04em;
+    line-height: 1;
 
     text-decoration: none;
+    white-space: nowrap;
 
     transform: translate(-50%, -50%);
 
     transition:
         transform 0.2s ease,
-        opacity 0.2s ease;
-
-    z-index: 2;
+        filter 0.2s ease;
 }
+
+
+/* Hover */
 
 .brain-map__link:hover {
-    transform: translate(-50%, -50%) scale(1.08);
-    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1.1);
+
+    filter: brightness(1.08);
 }
 
 
-/* 四个词的位置 */
+/* =========================================================
+   FOUR AREAS
+   ========================================================= */
+
+
+/* LIFE */
 
 .brain-map__link--life {
-    left: 30%;
-    top: 38%;
-    color: #FF8FA3;
+    left: 28%;
+    top: 52%;
+
+    color: #7ED957;
 }
 
+
+/* WORK */
+
 .brain-map__link--work {
-    left: 70%;
-    top: 38%;
+    left: 73%;
+    top: 48%;
+
     color: #63C7E8;
 }
 
+
+/* EDUCATION */
+
 .brain-map__link--education {
-    left: 50%;
+    left: 52%;
     top: 23%;
-    color: #FFD65A;
+
+    color: #FFD85A;
 }
+
+
+/* HOBBIES */
 
 .brain-map__link--hobbies {
-    left: 50%;
-    top: 70%;
-    color: #7ED957;
-}
-.brain {
-    width: min(100%, 600px);
-    height: auto;
-    overflow: visible;
+    left: 51%;
+    top: 76%;
+
+    color: #FF8FA3;
 }
 
-/* Brain regions */
 
-.brain__region {
-    fill: var(--accent);
-    fill-opacity: 0.18;
-    stroke: var(--text-colour-white);
-    stroke-width: 2;
-    cursor: pointer;
+/* =========================================================
+   TABLET
+   ========================================================= */
 
-    transition:
-        transform 0.25s ease,
-        fill-opacity 0.25s ease,
-        filter 0.25s ease;
-    transform-origin: center;
+@media (max-width: 1100px) {
+
+    .about__brain {
+        min-height: 450px;
+    }
+
+    .brain-map {
+        width: 440px;
+    }
+
+    .brain-map__link {
+        font-size: 1.35rem;
+    }
 }
 
-/* Hover effect */
 
-.brain__region:hover {
-    fill-opacity: 0.45;
-    filter: brightness(1.2);
-    transform: scale(1.025);
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .about__brain {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .brain-map {
+        width: min(92vw, 440px);
+    }
+
+    .brain-map__link {
+        font-size: clamp(1rem, 4vw, 1.35rem);
+    }
 }
-
-/* Brain outline */
-
-.brain__outline {
-    fill: none;
-    stroke: var(--text-colour-white);
-    stroke-width: 4;
-}
-
-/* Brain folds */
-
-.brain__details {
-    fill: none;
-    stroke: var(--text-colour-white);
-    stroke-width: 3;
-    stroke-linecap: round;
-    opacity: 0.65;
-    pointer-events: none;
-}
-
 
 /* 动画 */
 

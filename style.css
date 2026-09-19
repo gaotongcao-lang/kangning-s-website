@@ -1829,21 +1829,20 @@ END
 
 /* LIFE、EDUCATION 向右移动 */
 .brain-map__link--life {
-    left: 33% !important;
+    left: 40% !important;
 }
 
 .brain-map__link--education {
-    left: 36% !important;
+    left: 42% !important;
 }
 
-/* 手机上的对应位置 */
 @media (max-width: 560px) {
     .brain-map__link--life {
-        left: 31% !important;
+        left: 38% !important;
     }
 
     .brain-map__link--education {
-        left: 33% !important;
+        left: 40% !important;
     }
 }
 

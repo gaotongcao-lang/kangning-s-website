@@ -362,33 +362,60 @@ ABOUT
 ========================================================= */
 
 .about {
+    width: 100%;
 }
 
 .about__wrapper {
-    padding-bottom: 40px;
+    width: min(94vw, 1400px);
+    margin-inline: auto;
+    padding: 70px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+.about__left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 55px;
+}
+
+.about__picture {
+    flex-shrink: 0;
 }
 
 .about__image {
-    margin-inline: auto;
-    display: block;
     width: 500px;
     height: 500px;
     object-fit: cover;
     border-radius: 50%;
+    display: block;
+}
+
+.about__picture > img {
+    border-radius: 50%;
+    margin-bottom: 0;
 }
 
 .about__text {
+    flex: 1;
+    min-width: 0;
     position: relative;
-    text-align: center;
+    text-align: left;
 }
 
 .about__headline {
-    margin-bottom: 24px;
+    margin-bottom: 43px;
 }
 
 .about__description {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 0;
+    width: 38ch;
+    max-width: 100%;
 }
 
 .about__headline > br,
@@ -396,13 +423,20 @@ ABOUT
     display: inline-block;
 }
 
-.about__picture {
+
+/* Brain placeholder */
+
+.about__brain {
+    flex: 0 0 420px;
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.about__picture > img {
-    border-radius: 50%;
-    margin-bottom: 16px;
-}
+
+/* Animation */
 
 @media (prefers-reduced-motion: no-preference) {
     .about__text {
@@ -419,61 +453,75 @@ ABOUT
     }
 }
 
-@media (min-width: 37.5em) {
+
+/* Tablet */
+
+@media (max-width: 1100px) {
+
     .about__wrapper {
-        padding: 60px 0;
-        display: flex;
-        align-items: center;
+        width: calc(100% - 3.75rem);
+        gap: 40px;
     }
 
-    .about__picture {
-        order: 1;
-        flex-shrink: 0;
+    .about__left {
+        gap: 30px;
     }
 
     .about__image {
-        width: 500px;
-        height: 500px;
-        flex-shrink: 0;
-        display: block;
+        width: 400px;
+        height: 400px;
     }
 
-    .about__picture > img {
-        margin-bottom: 0;
-        margin-left: 0;
+    .about__brain {
+        flex-basis: 350px;
+        min-height: 400px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+
+    .about__wrapper {
+        width: calc(100% - 2rem);
+        padding: 50px 0;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .about__left {
+        width: 100%;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about__image {
+        width: min(82vw, 500px);
+        height: min(82vw, 500px);
     }
 
     .about__text {
-        order: 2;
-        width: 70vw;
-        text-align: left;
+        width: 100%;
+        text-align: center;
     }
 
     .about__headline {
-        margin-bottom: 60px;
+        margin-bottom: 30px;
     }
 
     .about__description {
-        margin-bottom: 34px;
-        width: 70%;
+        width: 100%;
+        max-width: 500px;
+        margin-inline: auto;
+    }
+
+    .about__brain {
+        width: 100%;
+        min-height: 350px;
+        flex-basis: auto;
     }
 }
-
-@media (min-width: 62.5em) {
-    .about__headline {
-        margin-bottom: 43px;
-    }
-
-    .about__description {
-        margin-bottom: 66px;
-        width: 38ch;
-    }
-
-    .about__headline > span {
-        display: block;
-    }
-}
-
 
 /* =========================================================
 SKILLS

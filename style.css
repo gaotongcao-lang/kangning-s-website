@@ -442,12 +442,61 @@ ABOUT
     position: relative;
     width: 480px;
     max-width: 100%;
+    margin-inline: auto;
 }
-
 .brain-map__image {
     display: block;
     width: 100%;
     height: auto;
+}
+.brain-map__link {
+    position: absolute;
+
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+
+    text-decoration: none;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+    z-index: 2;
+}
+
+.brain-map__link:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.75;
+}
+
+
+/* 四个词的位置 */
+
+.brain-map__link--life {
+    left: 30%;
+    top: 38%;
+    color: #FF8FA3;
+}
+
+.brain-map__link--work {
+    left: 70%;
+    top: 38%;
+    color: #63C7E8;
+}
+
+.brain-map__link--education {
+    left: 50%;
+    top: 23%;
+    color: #FFD65A;
+}
+
+.brain-map__link--hobbies {
+    left: 50%;
+    top: 70%;
+    color: #7ED957;
 }
 .brain {
     width: min(100%, 600px);

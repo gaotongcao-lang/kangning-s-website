@@ -483,9 +483,42 @@ BRAIN WORDS — INTERACTIVE
 
 /* 鼠标放上去 */
 
-.brain-map__link:hover {
+.brain-map__link:hover,
+.brain-map__link:focus,
+.brain-map__link:active {
     transform: translate(-50%, -50%) scale(1.1);
     filter: brightness(1.08);
+}
+
+
+/* 保持每个分类自己的颜色 */
+
+.brain-map__link--life,
+.brain-map__link--life:hover,
+.brain-map__link--life:focus,
+.brain-map__link--life:active {
+    color: #7ED957;
+}
+
+.brain-map__link--work,
+.brain-map__link--work:hover,
+.brain-map__link--work:focus,
+.brain-map__link--work:active {
+    color: #63C7E8;
+}
+
+.brain-map__link--education,
+.brain-map__link--education:hover,
+.brain-map__link--education:focus,
+.brain-map__link--education:active {
+    color: #FFD85A;
+}
+
+.brain-map__link--hobbies,
+.brain-map__link--hobbies:hover,
+.brain-map__link--hobbies:focus,
+.brain-map__link--hobbies:active {
+    color: #FF8FA3;
 }
 
 

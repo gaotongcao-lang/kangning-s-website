@@ -3,355 +3,469 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Kangning Du, Lecturer in the School of Psychological Sciences at Macquarie University. Research, psychological support and professional profiles.">
-<meta name="theme-color" content="#0b0a0f">
-<title>Kangning Du | Psychology & Research</title>
+<title>Kangning Du</title>
+<meta name="description" content="Kangning Du — psychologist, researcher and lecturer at Macquarie University, based in Sydney.">
+<meta name="theme-color" content="#fcf9f4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
 <style>
+/* =========================================================
+   Kangning Du — personal site
+   ---------------------------------------------------------
+   Layout: left index · centre text · right photograph.
+   Each "view" below (<section class="view" id="...">) is one
+   page. Edit its title, text and data-photo directly.
+   To add a page: copy a <section class="view">, give it an id,
+   and add a matching link in the sidebar.
+   ========================================================= */
 :root{
-  --bg:#0b0a0f;--bg2:#121018;--card:rgba(255,255,255,.035);--card-hi:rgba(255,255,255,.06);
-  --line:rgba(255,255,255,.09);--line-hi:rgba(255,255,255,.18);
-  --text:#f6f1ef;--soft:#c9bfc1;--dim:#8f8589;
-  --red:#d9675a;--coral:#e8957f;--peach:#f0c4b0;--violet:#8b5cf6;
-  --grad:linear-gradient(100deg,#e8957f,#f0c4b0);
-  --sans:'Manrope','Noto Sans SC',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;
-  --r:22px;--ease:cubic-bezier(.2,.7,.2,1)
+  --paper:#fcf9f4;
+  --ink:#2b2622;
+  --grey:#8f857b;
+  --mute:#c8bdb0;
+  --accent:#a8544b;        /* the one colour: active page */
+  --rule:#ece4d8;
+  --sans:'Cormorant Garamond','Noto Serif SC','Noto Serif CJK SC','Songti SC',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --side:clamp(200px,17vw,250px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:var(--red);color:#fff}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17.5px;line-height:1.55;font-weight:500;-webkit-font-smoothing:antialiased;letter-spacing:.005em}
+::selection{background:var(--ink);color:#fff}
 a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit}
-a:focus-visible,button:focus-visible{outline:2px solid var(--coral);outline-offset:4px;border-radius:6px}
-h1,h2,h3,p{margin-top:0}
-.wrap{width:min(1200px,calc(100% - 64px));margin:auto}
+img{display:block}
+h1,h2,p,ul{margin:0}
+a:focus-visible,button:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
 
+/* ---------------- frame ---------------- */
+.frame{--m:clamp(28px,3vw,52px);--tw:clamp(250px,21vw,340px);display:grid;grid-template-columns:auto var(--tw) auto;justify-content:space-between;align-items:center;column-gap:48px;padding:0 var(--m);min-height:100vh}
+.frame:has(.view:not(.home).on){--tw:clamp(300px,27vw,430px)}
+.stage{display:contents}
 
-/* scroll progress */
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad);z-index:60}
+/* ---------------- sidebar ---------------- */
+.side{align-self:stretch;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+.logo{display:block;line-height:1;margin-bottom:30px}
+.logo .l1{display:block;white-space:nowrap;font-family:var(--serif);font-weight:500;font-size:clamp(20px,1.55vw,24px);letter-spacing:.13em;color:var(--ink)}
+.logo .cn{display:inline-block;margin-left:.62em;padding-left:.62em;border-left:1px solid var(--mute);font-family:'Noto Serif SC','Noto Serif CJK SC','Songti SC','STSong',serif;font-weight:500;font-size:.86em;letter-spacing:.16em;line-height:1;vertical-align:.06em;color:var(--ink)}
+.logo .l2{display:block;margin-top:7px;white-space:nowrap;font-family:var(--sans);font-weight:400;font-size:13px;letter-spacing:.42em;color:var(--grey)}
+.nav{list-style:none;padding:0;font-size:16.5px;line-height:1.9}
+.nav a{display:inline-block;transition:color .25s,transform .35s ease}
+.nav a:hover{transform:translateX(2px)}
+.nav a:hover{color:var(--accent)}
+.nav a.on{color:var(--accent)}
+.nav .group{margin:4px 0 2px}
+.nav .group>button{display:flex;align-items:baseline;gap:5px;padding:0;border:0;background:none;cursor:pointer;font:inherit;font-size:18.5px;color:var(--mute);transition:color .25s}
+.nav .group>button:hover,.nav .group.open>button{color:var(--grey)}
+.nav .group>button i{font-style:normal;font-size:13.5px;display:inline-block;transform:rotate(180deg);transition:transform .35s}
+.nav .group.open>button i{transform:none}
+.nav .sub{list-style:none;padding:0 0 0 10px;overflow:hidden;max-height:0;transition:max-height .5s ease}
+.nav .group.open .sub{max-height:200px}
+.lang{display:flex;align-items:baseline;gap:10px;margin-top:46px;font-size:13.5px;letter-spacing:.18em;color:var(--mute)}
+.lang button{position:relative;padding:2px 0;border:0;background:none;cursor:pointer;font:inherit;letter-spacing:inherit;color:var(--mute);transition:color .3s}
+.lang button:hover{color:var(--grey)}
+.lang button[aria-pressed=true]{color:var(--ink);cursor:default}
+.lang button::after{content:"";position:absolute;left:0;right:.18em;bottom:-3px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
+.lang button[aria-pressed=true]::after{transform:scaleX(1)}
+.lang button[data-lang=zh]{letter-spacing:.12em}
+.side-foot{margin-top:26px;font-size:13.5px;color:var(--ink)}
+.social{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;max-width:270px}
+.ic{position:relative;display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--mute);border-radius:50%;color:var(--grey);overflow:hidden;isolation:isolate;transition:color .45s ease,border-color .45s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.ic::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ic:hover{color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+.ic:hover::before{transform:scale(1)}
+.ic svg{width:15px;height:15px;fill:currentColor}
+.ic b{font-family:var(--serif);font-weight:500;font-size:15px;line-height:1;letter-spacing:.01em}
+.ic b sup{font-size:.6em;vertical-align:.55em;margin-left:.04em}
+.ic b.z{font-family:'Noto Serif SC','Noto Serif CJK SC','Songti SC',serif;font-size:13px}
+.social-cap{margin-top:14px;height:16px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
+.social-cap span{display:inline-block;transition:opacity .35s,filter .35s,transform .35s}
+.social-cap span.swap{opacity:0;filter:blur(4px);transform:translateX(-4px)}
 
-/* nav */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s,border-color .35s,backdrop-filter .35s;border-bottom:1px solid transparent}
-.site-header.scrolled{background:rgba(11,10,15,.68);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-color:var(--line)}
-.nav{height:78px;display:flex;align-items:center;gap:36px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px;letter-spacing:-.03em;white-space:nowrap}
-.brand i{width:30px;height:30px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-style:normal;font-family:var(--serif);font-size:18px;color:#1a0b0d}
-.links{display:flex;gap:6px;margin-left:auto}
-.links a{position:relative;font-size:13px;font-weight:600;color:var(--soft);padding:8px 14px;border-radius:30px;transition:color .25s,background .25s}
-.links a:hover,.links a.active{color:#fff;background:var(--card-hi)}
-.lang{position:relative;display:flex;padding:4px;border-radius:30px;background:var(--card);border:1px solid var(--line)}
-.lang button{position:relative;z-index:1;background:none;border:0;cursor:pointer;padding:6px 13px;font-size:12px;font-weight:700;color:var(--soft);border-radius:30px;transition:color .3s}
-.lang button[aria-pressed=true]{color:#1a0b0d}
-.lang .pill{position:absolute;top:4px;bottom:4px;left:4px;border-radius:30px;background:var(--grad);transition:transform .4s var(--ease),width .4s var(--ease)}
-
-/* hero */
-.hero-band{position:relative;overflow:hidden;padding:150px 0 110px;background:radial-gradient(ellipse 60% 70% at 80% 30%,rgba(217,103,90,.10),transparent 70%)}
-.hero{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
-.overline{display:inline-flex;align-items:center;gap:10px;padding:7px 15px 7px 11px;border-radius:30px;border:1px solid var(--line-hi);background:rgba(255,255,255,.04);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--peach)}
-.overline:before{content:'';width:8px;height:8px;border-radius:50%;background:var(--coral)}
-.hero h1{font-size:clamp(48px,6vw,88px);font-weight:700;line-height:1.02;letter-spacing:-.045em;margin:28px 0 20px;color:#fff}
-.hero-statement{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.5vw,34px);line-height:1.25;margin:0 0 38px;max-width:560px;color:var(--peach)}
-html[lang=zh] .hero-statement{font-family:var(--sans);font-style:normal;font-weight:700;letter-spacing:.02em}
-.appointment{display:grid;gap:4px;padding:24px 26px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);max-width:560px}
-.credential{display:flex;align-items:center;gap:10px;font-size:15.5px;font-weight:600;color:var(--text)}
-.credential:before{content:'';flex:none;width:6px;height:6px;border-radius:50%;background:var(--coral)}
-.university-name{display:block;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:clamp(22px,2.2vw,28px);font-weight:800;letter-spacing:-.035em}
-.faculty-line{font-size:14px;color:var(--dim)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:40px;font-size:14px;font-weight:700;transition:transform .3s var(--ease),box-shadow .3s,background .3s}
-.btn-primary{background:var(--peach);color:#1a0b0d}
-.btn-primary:hover{background:#fff}
-.btn-ghost{border:1px solid var(--line-hi);color:var(--text)}
-.btn-ghost:hover{background:var(--card-hi)}
-.btn span{transition:transform .3s var(--ease)}.btn:hover span{transform:translateX(3px)}
-
-/* portrait */
-.portrait{position:relative;justify-self:end;width:100%;max-width:500px}
-.portrait .frame{position:absolute;inset:0;transform:translate(22px,22px);border-radius:240px 240px 20px 20px;border:1px solid rgba(240,196,176,.45);pointer-events:none}
-.portrait .tint{position:absolute;inset:0;transform:translate(-22px,-22px);border-radius:240px 240px 20px 20px;background:linear-gradient(160deg,rgba(232,149,127,.16),rgba(232,149,127,.03) 60%,transparent);pointer-events:none}
-.portrait .dots{position:absolute;left:-46px;top:16%;width:92px;height:120px;background-image:radial-gradient(rgba(240,196,176,.55) 1.4px,transparent 1.6px);background-size:14px 14px;pointer-events:none}
-.portrait .spark{position:absolute;right:-8px;top:-6px;font-size:22px;line-height:1;color:var(--peach);pointer-events:none}
-.portrait .spark.sm{right:28px;top:-26px;font-size:12px;opacity:.7}
-.portrait .caption{position:absolute;left:-34px;bottom:44px;z-index:2;display:flex;align-items:center;gap:13px;padding:13px 18px 13px 13px;border-radius:16px;background:rgba(20,18,26,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line-hi);box-shadow:0 16px 36px -16px rgba(0,0,0,.7)}
-.portrait .caption i{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--peach);color:#1a0b0d;font-family:var(--serif);font-style:normal;font-size:21px}
-.portrait .caption b{display:block;font-size:13.5px;font-weight:700;line-height:1.3}
-.portrait .caption small{display:block;font-size:12px;color:var(--dim);line-height:1.3}
-.hero-image{position:relative;margin:0;aspect-ratio:4/5;border-radius:240px 240px 20px 20px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.1)}
-.hero-image img{width:100%;height:100%;object-fit:cover;object-position:46% 30%;display:block}
-
-
-/* facts */
-.quick-facts{padding:0 0 10px}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.fact{position:relative;padding:28px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);overflow:hidden}
-.fact .label{display:block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:12px}
-.fact strong{display:block;font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.02em}
-
-/* sections */
-.section{position:relative;padding:120px 0}
-.section-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
-.section-head:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line-hi),transparent)}
-.section h2{font-size:clamp(36px,4.2vw,58px);font-weight:700;line-height:1.08;letter-spacing:-.04em;margin:0 0 26px;max-width:900px}
-.section h2 em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em;color:var(--peach)}
-.intro{font-size:clamp(19px,1.7vw,22px);line-height:1.55;color:var(--soft);max-width:760px}
-
-.about-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:end}
-.about-lead{font-size:clamp(24px,2.6vw,36px);font-weight:500;line-height:1.35;letter-spacing:-.025em;margin:0}
-.about-lead .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.body-copy{color:var(--soft);line-height:1.85;margin:0;padding-left:24px;border-left:1px solid var(--line-hi)}
-
-/* research bento */
-.research{background:var(--bg2)}
-.research-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
-.card{position:relative;padding:34px 30px 32px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .45s var(--ease),border-color .3s}
-.card:hover{border-color:var(--line-hi)}
-.card .num{display:flex;align-items:center;justify-content:space-between;font-family:var(--serif);font-size:44px;line-height:1;margin-bottom:28px;color:var(--coral)}
-.card h3{font-size:22px;font-weight:700;letter-spacing:-.035em;line-height:1.2;margin:0 0 20px;min-height:2.4em}
-.card ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.card li{position:relative;padding-left:22px;font-size:15px;line-height:1.5;color:var(--soft)}
-.card li:before{content:'';position:absolute;left:0;top:.62em;width:10px;height:1.5px;background:var(--coral)}
-
-/* services */
-.services{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px;counter-reset:s}
-.services li{counter-increment:s;position:relative;padding:20px 0 20px 48px;border-top:1px solid var(--line);font-size:16.5px;font-weight:500;line-height:1.45}
-.services li:before{content:counter(s,decimal-leading-zero);position:absolute;top:24px;left:0;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--dim);transition:color .3s}
-.services li:hover:before{color:var(--coral)}
-
+/* ---------------- centre ---------------- */
+.text{width:var(--tw);padding:60px 0}
+.view{display:none}
+.view.on{display:block;animation:rise .7s ease both}
+@keyframes rise{from{opacity:0;filter:blur(7px);transform:translateY(10px)}to{opacity:1;filter:none;transform:none}}
+.view h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.5vw,38px);line-height:1.05;letter-spacing:.005em;margin-bottom:38px}
+.view h3{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--grey);margin:46px 0 14px}
+.lead{font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.6vw,23px)!important;line-height:1.4!important;color:var(--ink);margin-bottom:26px!important}
+.more{display:inline-flex;gap:6px;margin-top:30px;font-size:16px;color:var(--grey);border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color .3s,border-color .3s}
+.more:hover{color:var(--ink);border-color:var(--ink)}
+.arr{display:inline-block;transition:transform .35s ease}
+a:hover>.arr{transform:translate(2px,-2px)}
+/* about: credentials in brief */
+.brief{display:grid;grid-template-columns:112px 1fr;border-top:1px solid var(--rule);font-size:16.5px}
+.brief>*{padding:10px 0;border-bottom:1px solid var(--rule);margin:0}
+.brief dt{color:var(--grey)}
+.brief dd{min-width:0}
+.brief .v{color:var(--grey);font-size:14.5px;margin-left:6px;border-bottom:1px solid var(--rule)}
+.brief .v:hover{color:var(--ink);border-color:var(--ink)}
+/* research: three themes */
+.themes{list-style:none;padding:0;margin-top:34px}
+.themes li{display:grid;grid-template-columns:34px 1fr;padding:18px 0;border-top:1px solid var(--rule)}
+.themes li:last-child{border-bottom:1px solid var(--rule)}
+.themes b{font-family:var(--serif);font-weight:500;font-size:17px;color:var(--grey);line-height:1.2}
+.themes strong{display:block;font-weight:500;font-size:17.5px;margin-bottom:4px}
+.themes span{color:var(--grey);font-size:16.5px}
+/* publications: record links */
+.records{list-style:none;padding:0;margin-top:34px;border-top:1px solid var(--rule)}
+.records a{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule);font-family:var(--serif);font-size:21px;transition:color .3s,padding .35s ease}
+.records a small{font-family:var(--sans);font-size:14.5px;color:var(--grey);margin-left:auto;margin-right:12px}
+.records a:hover{color:var(--accent);padding-left:6px}
+/* approach: quotation placeholder */
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,1.9vw,27px);line-height:1.35;color:var(--mute);border-left:1px solid var(--rule);padding-left:22px}
+/* writing: entries */
+.entries{list-style:none;padding:0;margin-top:30px;border-top:1px solid var(--rule)}
+.entries li{display:grid;grid-template-columns:78px 1fr;padding:12px 0;border-bottom:1px solid var(--rule);font-size:17px;color:var(--mute)}
 /* contact */
-.contact{overflow:hidden;text-align:center;background:var(--bg2);border-top:1px solid var(--line)}
-.contact .wrap{position:relative}
-.contact h2,.contact .intro{margin-left:auto;margin-right:auto}
-.contact .section-head{justify-content:center}.contact .section-head:after{display:none}
-.email-block{margin:46px 0 56px}
-.email-block strong{display:block;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
-.email-link{display:inline-flex;align-items:center;gap:14px;font-size:clamp(24px,3.4vw,42px);font-weight:700;letter-spacing:-.035em;line-height:1.15;overflow-wrap:anywhere;color:#fff;padding-bottom:6px;border-bottom:1px solid var(--line-hi);transition:border-color .3s}
-.email-link:hover{border-color:var(--coral)}
-.email-link span{font-size:.7em;color:var(--coral)}
-.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:auto}
-.profiles a{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-radius:16px;background:var(--card);border:1px solid var(--line);font-size:15px;font-weight:700;transition:background .3s,border-color .3s,transform .35s var(--ease)}
-.profiles a span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--card-hi);color:var(--soft);transition:background .3s,color .3s,transform .35s var(--ease)}
-.profiles a:hover{background:var(--card-hi);border-color:var(--line-hi)}
-.profiles a:hover span{color:var(--coral)}
+.mail{display:inline-block;font-family:var(--serif);font-size:clamp(24px,2.1vw,31px);line-height:1.2;border-bottom:1px solid var(--mute);transition:border-color .3s,color .3s;overflow-wrap:anywhere}
+.mail:hover{color:var(--accent);border-color:var(--accent)}
+.elsewhere{display:grid;grid-template-columns:1fr 1fr;gap:9px 24px;font-size:16.5px}
+.elsewhere a{display:flex;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:6px;transition:border-color .3s}
+.elsewhere a:hover{border-color:var(--ink)}
+.view p{font-size:17.5px;line-height:1.6}
+.view.home p{font-size:18.5px;line-height:1.65}
+.view.home p+p{margin-top:14px}
+.view.home .more{margin-top:36px}
+.view p+p{margin-top:14px}
+.view .meta{margin-top:40px;color:var(--grey);font-size:13px}
+.view .meta em{font-style:italic;color:var(--ink)}
+.list{list-style:none;padding:0;margin-top:26px;border-top:1px solid var(--rule)}
+.list li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:17px}
+.list li span{color:var(--grey);font-size:14.5px;padding-top:2px}
+.kv{margin-top:26px;display:grid;grid-template-columns:118px 1fr;gap:9px 18px;font-size:17px}
+.kv dt{color:var(--grey)}
+.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.view a.u{border-bottom:1px solid var(--mute);transition:border-color .25s,color .25s}
+.view a.u:hover{border-color:var(--ink)}
+.ph-note{color:var(--mute);font-style:italic}
 
-.footer{border-top:1px solid var(--line);font-size:13px;color:var(--dim)}
-.footer .wrap{min-height:84px;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.footer a:hover{color:var(--text)}
+/* ---------------- Chinese ---------------- */
+html[lang=zh-CN] body{font-family:'Cormorant Garamond','Noto Serif SC','Noto Serif CJK SC','Songti SC','STSong',serif}
+html[lang=zh-CN] .view p,html[lang=zh-CN] .nav,html[lang=zh-CN] .brief,html[lang=zh-CN] .themes span{font-size:.9em}
+html[lang=zh-CN] .view p,html[lang=zh-CN] .themes span,html[lang=zh-CN] .brief dd{line-height:1.85;letter-spacing:.02em}
+html[lang=zh-CN] .view h2,html[lang=zh-CN] .lead,html[lang=zh-CN] .quote{font-family:'Cormorant Garamond','Noto Serif SC','Noto Serif CJK SC','Songti SC','STSong',serif;font-style:normal;letter-spacing:.06em}
+html[lang=zh-CN] .view h2{font-size:clamp(26px,2.1vw,32px)}
+html[lang=zh-CN] .lead{font-size:clamp(18px,1.4vw,21px)!important;line-height:1.7!important}
+html[lang=zh-CN] .view h3{letter-spacing:.4em}
+html[lang=zh-CN] .nav{letter-spacing:.06em}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
-.reveal.in{opacity:1;transform:none}
-.no-js .reveal{opacity:1;transform:none}
+/* ---------------- photograph ---------------- */
+.photo{position:relative;min-width:0;width:min(42vw,calc(70vh * 1.3339),860px);aspect-ratio:1702/1276;overflow:hidden;background:#eee}
+@media (min-width:1101px){.frame:has(.view:not(.home).on) .photo{width:min(38vw,calc(70vh * 1.3339),780px);--ph:min(28.49vw,70vh,585px)!important}}
+@media (min-width:1101px){.photo{--ph:min(31.49vw,70vh,644px);align-self:start;position:sticky;top:calc((100vh - var(--ph))/2);margin-top:calc((100vh - var(--ph))/2)!important}}
+.photo img{--px:0px;--py:0px;--sc:1;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translate3d(var(--px),var(--py),0) scale(var(--sc));transition:opacity .9s ease;filter:saturate(1.06) contrast(1.02) sepia(.06);will-change:transform}
+.photo img.mb{filter:url(#mb) saturate(1.06) contrast(1.02) sepia(.06)}
+.photo img.out{opacity:0}
 
-html[lang=zh] .hero h1{letter-spacing:-.05em}
-html[lang=zh] .section h2,html[lang=zh] .about-lead{letter-spacing:-.01em;line-height:1.2}
-html[lang=zh] .section h2 em{font-family:var(--sans);font-style:normal;font-weight:700}
+/* ---------------- pointer: cursor, warm light ---------------- */
+.frame{position:relative;z-index:1}
+.nav{position:relative}
+.navmark{position:absolute;left:-14px;top:0;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:var(--accent);opacity:0;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .4s;pointer-events:none}
+.navmark.on{opacity:1}
+@media (max-width:720px){.navmark{display:none}}
+.cur,.ring{position:fixed;left:0;top:0;pointer-events:none;z-index:50;opacity:0;transition:opacity .4s}
+.cur{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--ink)}
+.ring{width:34px;height:34px;margin:-17px 0 0 -17px;will-change:transform,filter}
+.ring i{display:block;width:100%;height:100%;border-radius:50%;border:1px solid rgba(43,38,34,.38);transition:transform .45s cubic-bezier(.2,.8,.2,1),background-color .45s,border-color .45s}
+.ring.hot i{transform:scale(1.65);background:rgba(168,84,75,.07);border-color:rgba(168,84,75,.55)}
+.ring.down i{transform:scale(.8)}
+.cur,.ring{display:none}
 
-@media(max-width:1000px){
-  .hero{grid-template-columns:1fr;gap:70px}
-  .portrait{justify-self:center;max-width:420px}
-  .about-grid{grid-template-columns:1fr;gap:34px}
-  .research-grid{grid-template-columns:1fr}
-  .card h3{min-height:0}
-  .services{grid-template-columns:repeat(2,1fr)}
-  .profiles{grid-template-columns:repeat(2,1fr)}
-  .facts{grid-template-columns:1fr}
+.photo figcaption{position:absolute;right:14px;bottom:12px;font-size:11px;color:rgba(255,255,255,.85);text-shadow:0 1px 6px rgba(0,0,0,.25)}
+
+.credit{position:fixed;right:12px;bottom:10px;font-size:11px;color:var(--grey);border-bottom:1px solid var(--mute)}
+
+/* ---------------- responsive ---------------- */
+@media (max-width:1100px){
+  .frame{grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:56px;align-items:start}
+  .side{grid-row:1/3}
+  .text{width:auto;max-width:420px;padding:90px 0 40px}
+  .photo{grid-column:2;width:min(100%,720px);margin-bottom:60px}
 }
-@media(max-width:720px){
-  .wrap{width:calc(100% - 32px)}
-  .nav{height:64px;gap:12px}
-  .links{position:fixed;left:16px;right:16px;bottom:16px;margin:0;justify-content:space-between;padding:6px;border-radius:40px;background:rgba(18,16,24,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line-hi);box-shadow:0 20px 40px rgba(0,0,0,.5)}
-  .links a{font-size:11.5px;padding:9px 10px;white-space:nowrap}
-  .lang{margin-left:auto}
-  .hero-band{padding:100px 0 70px}
-  .portrait{width:calc(100% - 16px);margin-left:4px}
-  .portrait .frame{transform:translate(12px,12px)}.portrait .tint{transform:translate(-10px,-10px)}
-  .portrait .dots{left:-10px;width:56px}
-  .portrait .caption{left:-4px;bottom:26px}
-  .hero{gap:56px}
-  .hero h1{margin-top:24px}
-  .appointment{padding:20px}
-  .facts{grid-template-columns:1fr}
-  .section{padding:90px 0}
-  .services{grid-template-columns:1fr}
-  .services li{padding-left:40px}
-  .profiles{grid-template-columns:1fr}
-  .footer{padding-bottom:84px}
-  .footer .wrap{flex-direction:column;justify-content:center;text-align:center;gap:4px;padding:24px 0}
+@media (max-width:720px){
+  body{font-size:18.5px}
+  .frame{display:flex;flex-direction:column;padding:0}
+  .side{order:1}.photo{order:2}.text{order:3}
+  .side{position:static;height:auto;padding:26px 20px 10px;justify-content:flex-start}
+  .nav{margin-top:20px}
+  .side-foot,.side>.social,.social-cap{display:none}
+  .mobile-social .social{margin:0 0 6px;max-width:none;gap:10px}
+  .side{position:relative}
+  .lang{position:absolute;top:30px;right:20px;margin:0}
+  .nav{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:17px}
+  .nav .group>button i{display:none}
+  .nav .sub{display:none}
+  .nav .group{margin:0}
+  .nav .group>button,.nav .group.open>button{font-size:17px;color:var(--ink)}
+  .nav .group:has(a.on)>button{color:var(--accent)}
+  .stage{display:contents}
+  .photo{width:100%;aspect-ratio:1702/1276;margin:18px 0 0}
+  .text{padding:38px 20px 50px}
+  .kv{grid-template-columns:104px 1fr}
+  .view h2{margin-bottom:24px}
+  .elsewhere{grid-template-columns:1fr}
+  .brief{grid-template-columns:90px 1fr}
+  .credit{position:static;display:block;margin:0 20px 24px;border:0}
+  .mobile-social{display:flex!important;flex-wrap:wrap;gap:8px 16px;margin-top:40px;font-size:14.5px;color:var(--grey)}
 }
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*:before,*:after{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
-}
+.mobile-social{display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body class="no-js">
-<div class="progress" aria-hidden="true"></div>
-<header class="site-header">
-  <nav class="wrap nav" aria-label="Main navigation">
-    <a class="brand" href="#top"><i aria-hidden="true">K</i>Kangning Du</a>
-    <div class="links">
-      <a href="#about" data-t="navAbout">About</a>
-      <a href="#research" data-t="navResearch">Research</a>
-      <a href="#support" data-t="navSupport">Psychological support</a>
-      <a href="#contact" data-t="navContact">Contact</a>
-    </div>
-    <div class="lang" role="group" aria-label="Language / 语言">
-      <span class="pill" aria-hidden="true"></span>
-      <button type="button" data-lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
-    </div>
-  </nav>
-</header>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="mb" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbb" stdDeviation="0 0"/></filter></svg>
+<div class="ring" aria-hidden="true"><i></i></div><div class="cur" aria-hidden="true"></div>
+<div class="frame">
 
-<main id="top">
-  <div class="hero-band">
-    <section class="wrap hero" aria-labelledby="title">
-      <div class="hero-copy">
-        <div class="overline reveal" data-t="heroLabel">Psychology · Research · Wellbeing</div>
-        <h1 id="title" class="reveal" style="--d:.08s" data-t="name">Dr Kangning Du</h1>
-        <p class="hero-statement reveal" style="--d:.16s" data-t="researchProfile">Exploring the Depths of Human Behaviour</p>
-        <div class="appointment reveal" style="--d:.24s">
-          <strong class="credential" data-t="registration">Registered Psychologist (Australia and New Zealand)</strong>
-          <strong class="credential" data-t="job">Lecturer, School of Psychological Sciences</strong>
-          <span class="university-name" data-t="university">Macquarie University</span>
-          <span class="faculty-line" data-t="faculty">Faculty of Medicine, Health and Human Sciences</span>
-        </div>
-        <div class="hero-cta reveal" style="--d:.32s">
-          <a class="btn btn-primary" href="#contact"><b data-t="ctaContact">Get in touch</b> <span aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost" href="#research"><b data-t="ctaResearch">Explore research</b> <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
-      <div class="portrait reveal" style="--d:.2s">
-        <div class="tint" aria-hidden="true"></div>
-        <div class="frame" aria-hidden="true"></div>
-        <div class="dots" aria-hidden="true"></div>
-        <span class="spark" aria-hidden="true">✦</span><span class="spark sm" aria-hidden="true">✦</span>
-        <figure class="hero-image"><img src="assets/kangning-du.jpg" alt="Portrait of Kangning Du" data-alt="portrait" width="1229" height="1079"></figure>
-        <div class="caption"><i aria-hidden="true">Ψ</i><div><b data-t="capTitle">Registered Psychologist</b><small data-t="capSub">Australia · New Zealand</small></div></div>
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <a class="logo" href="#home" data-go="home" aria-label="Kangning Du — home"><span class="l1">KANGNING DU<span class="cn" lang="zh-CN">杜康宁</span></span><span class="l2">PSYCHOLOGY</span></a>
+    <ul class="nav" id="nav">
+      <li><a href="#about" data-go="about" data-i="0">About</a></li>
+      <li class="group open"><button type="button" aria-expanded="true" data-i="2"><i>^</i>Research</button>
+        <ul class="sub">
+          <li><a href="#research" data-go="research" data-i="3">Interests</a></li>
+          <li><a href="#projects" data-go="projects" data-i="4">Projects</a></li>
+          <li><a href="#publications" data-go="publications" data-i="6">Publications</a></li>
+        </ul></li>
+      <li class="group open"><button type="button" aria-expanded="true" data-i="8"><i>^</i>Clinical Experience</button>
+        <ul class="sub">
+          <li><a href="#clinical" data-go="clinical" data-i="9">Areas of practice</a></li>
+          <li><a href="#approach" data-go="approach" data-i="11">Approach</a></li>
+        </ul></li>
+      <li><a href="#teaching" data-go="teaching" data-i="13">Teaching</a></li>
+      <li class="group"><button type="button" aria-expanded="false" data-i="15"><i>^</i>Writing</button>
+        <ul class="sub">
+          <li><a href="#writing" data-go="writing" data-i="16">Articles</a></li>
+          <li><a href="#reflections" data-go="reflections" data-i="18">Reflections</a></li>
+        </ul></li>
+      <li><a href="#contact" data-go="contact" data-i="20">Contact</a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Language / 语言"><button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
+    <p class="side-foot">Copyright © <span id="y">2026</span> Kangning Du.</p>
+    <div class="social" id="social">
+      <a class="ic" href="mailto:kangning.du@mq.edu.au" aria-label="Email" data-en="Email" data-zh="邮箱"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M61.4 64C27.5 64 0 91.5 0 125.4 0 126.3 0 127.1 .1 128L0 128 0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256-.1 0c0-.9 .1-1.7 .1-2.6 0-33.9-27.5-61.4-61.4-61.4L61.4 64zM464 192.3L464 384c0 8.8-7.2 16-16 16L64 400c-8.8 0-16-7.2-16-16l0-191.7 154.8 117.4c31.4 23.9 74.9 23.9 106.4 0L464 192.3zM48 125.4C48 118 54 112 61.4 112l389.2 0c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7z"/></svg></a>
+      <a class="ic" href="https://scholar.google.com/citations?user=tCz9viUAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" data-en="Google Scholar" data-zh="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+      <a class="ic" href="https://www.researchgate.net/profile/Kangning-Du" target="_blank" rel="noopener" aria-label="ResearchGate" data-en="ResearchGate" data-zh="ResearchGate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></svg></a>
+      <a class="ic" href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener" aria-label="ORCID" data-en="ORCID" data-zh="ORCID"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg></a>
+      <a class="ic" href="https://au.linkedin.com/in/kangning-du-b8341259" target="_blank" rel="noopener" aria-label="LinkedIn" data-en="LinkedIn" data-zh="LinkedIn"><svg viewBox="0 0 448 512" aria-hidden="true"><path d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/></svg></a>
+      <a class="ic" href="https://www.xiaohongshu.com/user/profile/562f384d4476081e3ec4e58b" target="_blank" rel="noopener" aria-label="Xiaohongshu" data-en="Xiaohongshu" data-zh="小红书"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.405 9.879c.002.016.01.02.07.019h.725a.797.797 0 0 0 .78-.972.794.794 0 0 0-.884-.618.795.795 0 0 0-.692.794c0 .101-.002.666.001.777zm-11.509 4.808c-.203.001-1.353.004-1.685.003a2.528 2.528 0 0 1-.766-.126.025.025 0 0 0-.03.014L7.7 16.127a.025.025 0 0 0 .01.032c.111.06.336.124.495.124.66.01 1.32.002 1.981 0 .01 0 .02-.006.023-.015l.712-1.545a.025.025 0 0 0-.024-.036zM.477 9.91c-.071 0-.076.002-.076.01a.834.834 0 0 0-.01.08c-.027.397-.038.495-.234 3.06-.012.24-.034.389-.135.607-.026.057-.033.042.003.112.046.092.681 1.523.787 1.74.008.015.011.02.017.02.008 0 .033-.026.047-.044.147-.187.268-.391.371-.606.306-.635.44-1.325.486-1.706.014-.11.021-.22.03-.33l.204-2.616.022-.293c.003-.029 0-.033-.03-.034zm7.203 3.757a1.427 1.427 0 0 1-.135-.607c-.004-.084-.031-.39-.235-3.06a.443.443 0 0 0-.01-.082c-.004-.011-.052-.008-.076-.008h-1.48c-.03.001-.034.005-.03.034l.021.293c.076.982.153 1.964.233 2.946.05.4.186 1.085.487 1.706.103.215.223.419.37.606.015.018.037.051.048.049.02-.003.742-1.642.804-1.765.036-.07.03-.055.003-.112zm3.861-.913h-.872a.126.126 0 0 1-.116-.178l1.178-2.625a.025.025 0 0 0-.023-.035l-1.318-.003a.148.148 0 0 1-.135-.21l.876-1.954a.025.025 0 0 0-.023-.035h-1.56c-.01 0-.02.006-.024.015l-.926 2.068c-.085.169-.314.634-.399.938a.534.534 0 0 0-.02.191.46.46 0 0 0 .23.378.981.981 0 0 0 .46.119h.59c.041 0-.688 1.482-.834 1.972a.53.53 0 0 0-.023.172.465.465 0 0 0 .23.398c.15.092.342.12.475.12l1.66-.001c.01 0 .02-.006.023-.015l.575-1.28a.025.025 0 0 0-.024-.035zm-6.93-4.937H3.1a.032.032 0 0 0-.034.033c0 1.048-.01 2.795-.01 6.829 0 .288-.269.262-.28.262h-.74c-.04.001-.044.004-.04.047.001.037.465 1.064.555 1.263.01.02.03.033.051.033.157.003.767.009.938-.014.153-.02.3-.06.438-.132.3-.156.49-.419.595-.765.052-.172.075-.353.075-.533.002-2.33 0-4.66-.007-6.991a.032.032 0 0 0-.032-.032zm11.784 6.896c0-.014-.01-.021-.024-.022h-1.465c-.048-.001-.049-.002-.05-.049v-4.66c0-.072-.005-.07.07-.07h.863c.08 0 .075.004.075-.074V8.393c0-.082.006-.076-.08-.076h-3.5c-.064 0-.075-.006-.075.073v1.445c0 .083-.006.077.08.077h.854c.075 0 .07-.004.07.07v4.624c0 .095.008.084-.085.084-.37 0-1.11-.002-1.304 0-.048.001-.06.03-.06.03l-.697 1.519s-.014.025-.008.036c.006.01.013.008.058.008 1.748.003 3.495.002 5.243.002.03-.001.034-.006.035-.033v-1.539zm4.177-3.43c0 .013-.007.023-.02.024-.346.006-.692.004-1.037.004-.014-.002-.022-.01-.022-.024-.005-.434-.007-.869-.01-1.303 0-.072-.006-.071.07-.07l.733-.003c.041 0 .081.002.12.015.093.025.16.107.165.204.006.431.002 1.153.001 1.153zm2.67.244a1.953 1.953 0 0 0-.883-.222h-.18c-.04-.001-.04-.003-.042-.04V10.21c0-.132-.007-.263-.025-.394a1.823 1.823 0 0 0-.153-.53 1.533 1.533 0 0 0-.677-.71 2.167 2.167 0 0 0-1-.258c-.153-.003-.567 0-.72 0-.07 0-.068.004-.068-.065V7.76c0-.031-.01-.041-.046-.039H17.93s-.016 0-.023.007c-.006.006-.008.012-.008.023v.546c-.008.036-.057.015-.082.022h-.95c-.022.002-.028.008-.03.032v1.481c0 .09-.004.082.082.082h.913c.082 0 .072.128.072.128V11.19s.003.117-.06.117h-1.482c-.068 0-.06.082-.06.082v1.445s-.01.068.064.068h1.457c.082 0 .076-.006.076.079v3.225c0 .088-.007.081.082.081h1.43c.09 0 .082.007.082-.08v-3.27c0-.029.006-.035.033-.035l2.323-.003c.098 0 .191.02.28.061a.46.46 0 0 1 .274.407c.008.395.003.79.003 1.185 0 .259-.107.367-.33.367h-1.218c-.023.002-.029.008-.028.033.184.437.374.871.57 1.303a.045.045 0 0 0 .04.026c.17.005.34.002.51.003.15-.002.517.004.666-.01a2.03 2.03 0 0 0 .408-.075c.59-.18.975-.698.976-1.313v-1.981c0-.128-.01-.254-.034-.38 0 .078-.029-.641-.724-.998z"/></svg></a>
+      <a class="ic" href="https://www.youtube.com/@Kangningishere" target="_blank" rel="noopener" aria-label="YouTube" data-en="YouTube" data-zh="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <!-- <a class="ic" href="https://www.instagram.com/YOUR-HANDLE/" target="_blank" rel="noopener" aria-label="Instagram" data-en="Instagram" data-zh="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a> -->
+    </div>
+    <p class="social-cap" aria-hidden="true"><span id="cap">Elsewhere</span></p>
+  </aside>
+
+  <!-- ================= CENTRE TEXT ================= -->
+  <div class="stage">
+  <main class="text" id="main">
+
+    <section class="view home on" id="v-home" data-photo="coast">
+      <p data-i="27">A psychologist by training, a researcher by curiosity.</p>
+      <p data-i="28">Interested in how we think, feel, connect with others, and make sense of the world around us.</p>
+      <p data-i="h3">Currently based in Sydney, Australia.</p>
+      <a class="more" href="#about" data-go="about"><span data-i="30">More about me <span class="arr">↗</span></span></a>
+    </section>
+
+    <section class="view" id="v-about" data-photo="coast">
+      <h2 data-i="1">About</h2>
+      <!-- DRAFT in Kangning's voice — please read and rewrite freely. -->
+      <p class="lead" data-i="31">Most of my work comes back to one question: how people come to understand each other.</p>
+      <p data-i="32">Across ages, across cultures, and across the distance between needing support and finding it. I study it as a researcher, meet it as a psychologist, and teach it at Macquarie University, where I am a Lecturer in the School of Psychological Sciences.</p>
+      <p data-i="33">I did my PhD at the University of Otago in New Zealand, and I am registered as a psychologist in both New Zealand and Australia. Working between two countries, and between English and Chinese, has made culture feel less like a variable and more like the place people actually live.</p>
+      <p data-i="34">Away from work: photographs taken on long walks, and a lot of Lana Del Rey.</p>
+      <h3 data-i="35">In brief</h3>
+      <dl class="brief">
+        <dt data-i="36">Now</dt><dd data-i="41">Lecturer, School of Psychological Sciences, Macquarie University, Sydney</dd>
+        <dt data-i="37">PhD</dt><dd data-i="42">University of Otago, New Zealand</dd>
+        <dt data-i="38">Registration</dt><dd data-i="43">Psychologist, Australia <a class="v" href="https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx" target="_blank" rel="noopener">verify ↗</a><br>Psychologist, New Zealand <a class="v" href="https://psychologistsboard.org.nz/" target="_blank" rel="noopener">verify ↗</a></dd>
+        <dt data-i="39">Research</dt><dd data-i="44">Empathy, prejudice, culture and mental wellbeing · <a class="u" href="#research" data-go="research">more</a></dd>
+        <dt>ORCID</dt><dd><a class="u" href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener">0000-0002-5466-2937</a></dd>
+        <dt data-i="40">Languages</dt><dd data-i="45">English, Chinese</dd>
+      </dl>
+    </section>
+
+    <section class="view" id="v-research" data-photo="coast">
+      <h2 data-i="46">Research interests</h2>
+      <p data-i="47">Questions about human connection, social attitudes, and access to mental health support.</p>
+      <ol class="themes">
+        <li><b>i</b><div><strong data-i="48">Social understanding and development</strong><span data-i="49">Empathy and prosocial behaviour across the lifespan · Social understanding and child development · Social identity and attitudes toward outgroups</span></div></li>
+        <li><b>ii</b><div><strong data-i="50">Culture and social attitudes</strong><span data-i="51">Prejudice, intergroup bias and prejudice reduction · Cross-cultural psychology · Asian mental health and wellbeing</span></div></li>
+        <li><b>iii</b><div><strong data-i="52">Mental wellbeing and access</strong><span data-i="53">Sustainable mental wellbeing · Mental health in rural and underserved communities · AI and psychological or mental health support</span></div></li>
+      </ol>
+    </section>
+
+    <section class="view" id="v-publications" data-photo="coast">
+      <h2 data-i="7">Publications</h2>
+      <p data-i="54">The full, current record lives in three places.</p>
+      <ul class="records">
+        <li><a href="https://scholar.google.com/citations?user=tCz9viUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar<small data-i="55">citations</small><span class="arr">↗</span></a></li>
+        <li><a href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener">ORCID<small>0000-0002-5466-2937</small><span class="arr">↗</span></a></li>
+        <li><a href="https://www.researchgate.net/profile/Kangning-Du" target="_blank" rel="noopener">ResearchGate<small data-i="56">papers</small><span class="arr">↗</span></a></li>
+      </ul>
+      <h3 data-i="57">Selected</h3>
+      <p class="ph-note" data-i="58">Three to five papers, with a line on each — to be added.</p>
+    </section>
+
+    <section class="view" id="v-clinical" data-photo="coast">
+      <h2 data-i="10">Areas of practice</h2>
+      <p data-i="59">Individual therapy and counselling, with attention to wellbeing, life transitions and cultural context. Registered as a psychologist in Australia and New Zealand, working in English and Chinese.</p>
+      <ul class="list">
+        <li data-i="60"><span>01</span>Individual psychological therapy and counselling</li>
+        <li data-i="61"><span>02</span>Mental health and wellbeing support</li>
+        <li data-i="62"><span>03</span>Stress, adjustment and life transitions</li>
+        <li data-i="63"><span>04</span>Cross-cultural and migrant mental health</li>
+        <li data-i="64"><span>05</span>Support for young people and adults</li>
+        <li data-i="65"><span>06</span>Bilingual services in English and Chinese</li>
+        <li data-i="66"><span>07</span>Experience supporting ADHD and autism assessments</li>
+      </ul>
+    </section>
+
+    <section class="view" id="v-writing" data-photo="coast">
+      <h2 data-i="17">Articles</h2>
+      <p data-i="67">Psychology, written for a general reader.</p>
+      <ul class="entries"><li data-i="68"><span>—</span>First piece forthcoming</li></ul>
+    </section>
+
+    <section class="view" id="v-projects" data-photo="coast">
+      <h2 data-i="5">Projects</h2>
+      <p class="ph-note" data-i="69">Current academic projects — to be added.</p>
+    </section>
+
+    <section class="view" id="v-approach" data-photo="coast">
+      <h2 data-i="12">Approach</h2>
+      <p class="quote" data-i="70">A few sentences, in your own words, about how you work with people.</p>
+      <p class="ph-note" style="margin-top:22px" data-i="71">To be added.</p>
+    </section>
+
+    <section class="view" id="v-teaching" data-photo="coast">
+      <h2 data-i="14">Teaching</h2>
+      <p data-i="72">Lecturer in the School of Psychological Sciences, Faculty of Medicine, Health and Human Sciences, Macquarie University.</p>
+      <p class="ph-note" data-i="73">Units and teaching interests — to be added.</p>
+    </section>
+
+    <section class="view" id="v-reflections" data-photo="coast">
+      <h2 data-i="19">Reflections</h2>
+      <p data-i="74">Shorter, more personal notes — on work, places and things noticed.</p>
+      <ul class="entries"><li data-i="75"><span>—</span>Forthcoming</li></ul>
+    </section>
+
+    <section class="view" id="v-contact" data-photo="coast">
+      <h2 data-i="21">Contact</h2>
+      <p data-i="76">For professional enquiries, research collaboration, or just to say hello.</p>
+      <p style="margin-top:28px"><a class="mail" href="mailto:kangning.du@mq.edu.au">kangning.du@mq.edu.au</a></p>
+      <p style="margin-top:12px;color:var(--grey);font-size:16px" data-i="77">School of Psychological Sciences, Macquarie University, Sydney</p>
+      <h3 data-i="78">Elsewhere</h3>
+      <div class="elsewhere">
+        <a href="https://scholar.google.com/citations?user=tCz9viUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar<span class="arr">↗</span></a>
+        <a href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener">ORCID<span class="arr">↗</span></a>
+        <a href="https://www.researchgate.net/profile/Kangning-Du" target="_blank" rel="noopener">ResearchGate<span class="arr">↗</span></a>
+        <a href="https://au.linkedin.com/in/kangning-du-b8341259" target="_blank" rel="noopener">LinkedIn<span class="arr">↗</span></a>
+        <a href="https://www.xiaohongshu.com/user/profile/562f384d4476081e3ec4e58b" target="_blank" rel="noopener">小红书 Xiaohongshu<span class="arr">↗</span></a>
+        <a href="https://www.youtube.com/@Kangningishere" target="_blank" rel="noopener">YouTube<span class="arr">↗</span></a>
+        <!-- <a href="https://www.instagram.com/YOUR-HANDLE/" target="_blank" rel="noopener">Instagram<span class="arr">↗</span></a> -->
       </div>
     </section>
+
+    <div class="mobile-social">
+      <div class="social"><a class="ic" href="mailto:kangning.du@mq.edu.au" aria-label="Email" data-en="Email" data-zh="邮箱"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M61.4 64C27.5 64 0 91.5 0 125.4 0 126.3 0 127.1 .1 128L0 128 0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256-.1 0c0-.9 .1-1.7 .1-2.6 0-33.9-27.5-61.4-61.4-61.4L61.4 64zM464 192.3L464 384c0 8.8-7.2 16-16 16L64 400c-8.8 0-16-7.2-16-16l0-191.7 154.8 117.4c31.4 23.9 74.9 23.9 106.4 0L464 192.3zM48 125.4C48 118 54 112 61.4 112l389.2 0c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7z"/></svg></a>
+      <a class="ic" href="https://scholar.google.com/citations?user=tCz9viUAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" data-en="Google Scholar" data-zh="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+      <a class="ic" href="https://www.researchgate.net/profile/Kangning-Du" target="_blank" rel="noopener" aria-label="ResearchGate" data-en="ResearchGate" data-zh="ResearchGate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .077.53h-.005a3.334 3.334 0 0 0 .113.438c.245.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82c0-.095-.047-.142-.14-.142h-3.064c-.094 0-.14.047-.14.141v.956c0 .094.046.14.14.14h1.666c.056 0 .084.03.084.086 0 .36 0 .62-.036.865-.038.244-.1.447-.147.606-.108.385-.348.664-.638.876-.29.212-.738.35-1.227.35-.545 0-.901-.15-1.21-.353-.306-.203-.517-.454-.67-.915a3.136 3.136 0 0 1-.147-.762 17.366 17.367 0 0 1-.034-.656c-.01-.26-.014-.572-.014-.939a26.401 26.403 0 0 1 .014-.938 15.821 15.822 0 0 1 .035-.656 3.19 3.19 0 0 1 .148-.76 1.89 1.89 0 0 1 .742-1.01c.344-.244.593-.352 1.137-.352.508 0 .815.096 1.144.303.33.207.528.492.764.925.047.094.111.118.198.07l1.044-.43c.075-.048.09-.115.042-.199a3.549 3.549 0 0 0-.466-.742 3 3 0 0 0-.679-.607 3.313 3.313 0 0 0-.903-.41A4.068 4.068 0 0 0 19.586 0zM8.217 5.836c-1.69 0-3.036.086-4.297.086-1.146 0-2.291 0-3.007-.029v.831l1.088.2c.744.144 1.174.488 1.174 2.264v11.288c0 1.777-.43 2.12-1.174 2.263l-1.088.2v.832c.773-.029 2.12-.086 3.465-.086 1.29 0 2.951.057 3.667.086v-.831l-1.49-.2c-.773-.115-1.174-.487-1.174-2.264v-4.784c.688.057 1.29.057 2.206.057 1.748 3.123 3.41 5.472 4.355 6.56.86 1.032 2.177 1.691 3.839 1.691.487 0 1.003-.086 1.318-.23v-.744c-1.031 0-2.063-.716-2.808-1.518-1.26-1.376-2.95-3.582-4.355-6.074 2.32-.545 4.04-2.722 4.04-4.9 0-3.208-2.492-4.698-5.758-4.698zm-.515 1.29c2.406 0 3.839 1.26 3.839 3.552 0 2.263-1.547 3.782-4.097 3.782-.974 0-1.404-.03-2.063-.086v-7.19c.66-.059 1.547-.059 2.32-.059z"/></svg></a>
+      <a class="ic" href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener" aria-label="ORCID" data-en="ORCID" data-zh="ORCID"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg></a>
+      <a class="ic" href="https://au.linkedin.com/in/kangning-du-b8341259" target="_blank" rel="noopener" aria-label="LinkedIn" data-en="LinkedIn" data-zh="LinkedIn"><svg viewBox="0 0 448 512" aria-hidden="true"><path d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/></svg></a>
+      <a class="ic" href="https://www.xiaohongshu.com/user/profile/562f384d4476081e3ec4e58b" target="_blank" rel="noopener" aria-label="Xiaohongshu" data-en="Xiaohongshu" data-zh="小红书"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.405 9.879c.002.016.01.02.07.019h.725a.797.797 0 0 0 .78-.972.794.794 0 0 0-.884-.618.795.795 0 0 0-.692.794c0 .101-.002.666.001.777zm-11.509 4.808c-.203.001-1.353.004-1.685.003a2.528 2.528 0 0 1-.766-.126.025.025 0 0 0-.03.014L7.7 16.127a.025.025 0 0 0 .01.032c.111.06.336.124.495.124.66.01 1.32.002 1.981 0 .01 0 .02-.006.023-.015l.712-1.545a.025.025 0 0 0-.024-.036zM.477 9.91c-.071 0-.076.002-.076.01a.834.834 0 0 0-.01.08c-.027.397-.038.495-.234 3.06-.012.24-.034.389-.135.607-.026.057-.033.042.003.112.046.092.681 1.523.787 1.74.008.015.011.02.017.02.008 0 .033-.026.047-.044.147-.187.268-.391.371-.606.306-.635.44-1.325.486-1.706.014-.11.021-.22.03-.33l.204-2.616.022-.293c.003-.029 0-.033-.03-.034zm7.203 3.757a1.427 1.427 0 0 1-.135-.607c-.004-.084-.031-.39-.235-3.06a.443.443 0 0 0-.01-.082c-.004-.011-.052-.008-.076-.008h-1.48c-.03.001-.034.005-.03.034l.021.293c.076.982.153 1.964.233 2.946.05.4.186 1.085.487 1.706.103.215.223.419.37.606.015.018.037.051.048.049.02-.003.742-1.642.804-1.765.036-.07.03-.055.003-.112zm3.861-.913h-.872a.126.126 0 0 1-.116-.178l1.178-2.625a.025.025 0 0 0-.023-.035l-1.318-.003a.148.148 0 0 1-.135-.21l.876-1.954a.025.025 0 0 0-.023-.035h-1.56c-.01 0-.02.006-.024.015l-.926 2.068c-.085.169-.314.634-.399.938a.534.534 0 0 0-.02.191.46.46 0 0 0 .23.378.981.981 0 0 0 .46.119h.59c.041 0-.688 1.482-.834 1.972a.53.53 0 0 0-.023.172.465.465 0 0 0 .23.398c.15.092.342.12.475.12l1.66-.001c.01 0 .02-.006.023-.015l.575-1.28a.025.025 0 0 0-.024-.035zm-6.93-4.937H3.1a.032.032 0 0 0-.034.033c0 1.048-.01 2.795-.01 6.829 0 .288-.269.262-.28.262h-.74c-.04.001-.044.004-.04.047.001.037.465 1.064.555 1.263.01.02.03.033.051.033.157.003.767.009.938-.014.153-.02.3-.06.438-.132.3-.156.49-.419.595-.765.052-.172.075-.353.075-.533.002-2.33 0-4.66-.007-6.991a.032.032 0 0 0-.032-.032zm11.784 6.896c0-.014-.01-.021-.024-.022h-1.465c-.048-.001-.049-.002-.05-.049v-4.66c0-.072-.005-.07.07-.07h.863c.08 0 .075.004.075-.074V8.393c0-.082.006-.076-.08-.076h-3.5c-.064 0-.075-.006-.075.073v1.445c0 .083-.006.077.08.077h.854c.075 0 .07-.004.07.07v4.624c0 .095.008.084-.085.084-.37 0-1.11-.002-1.304 0-.048.001-.06.03-.06.03l-.697 1.519s-.014.025-.008.036c.006.01.013.008.058.008 1.748.003 3.495.002 5.243.002.03-.001.034-.006.035-.033v-1.539zm4.177-3.43c0 .013-.007.023-.02.024-.346.006-.692.004-1.037.004-.014-.002-.022-.01-.022-.024-.005-.434-.007-.869-.01-1.303 0-.072-.006-.071.07-.07l.733-.003c.041 0 .081.002.12.015.093.025.16.107.165.204.006.431.002 1.153.001 1.153zm2.67.244a1.953 1.953 0 0 0-.883-.222h-.18c-.04-.001-.04-.003-.042-.04V10.21c0-.132-.007-.263-.025-.394a1.823 1.823 0 0 0-.153-.53 1.533 1.533 0 0 0-.677-.71 2.167 2.167 0 0 0-1-.258c-.153-.003-.567 0-.72 0-.07 0-.068.004-.068-.065V7.76c0-.031-.01-.041-.046-.039H17.93s-.016 0-.023.007c-.006.006-.008.012-.008.023v.546c-.008.036-.057.015-.082.022h-.95c-.022.002-.028.008-.03.032v1.481c0 .09-.004.082.082.082h.913c.082 0 .072.128.072.128V11.19s.003.117-.06.117h-1.482c-.068 0-.06.082-.06.082v1.445s-.01.068.064.068h1.457c.082 0 .076-.006.076.079v3.225c0 .088-.007.081.082.081h1.43c.09 0 .082.007.082-.08v-3.27c0-.029.006-.035.033-.035l2.323-.003c.098 0 .191.02.28.061a.46.46 0 0 1 .274.407c.008.395.003.79.003 1.185 0 .259-.107.367-.33.367h-1.218c-.023.002-.029.008-.028.033.184.437.374.871.57 1.303a.045.045 0 0 0 .04.026c.17.005.34.002.51.003.15-.002.517.004.666-.01a2.03 2.03 0 0 0 .408-.075c.59-.18.975-.698.976-1.313v-1.981c0-.128-.01-.254-.034-.38 0 .078-.029-.641-.724-.998z"/></svg></a>
+      <a class="ic" href="https://www.youtube.com/@Kangningishere" target="_blank" rel="noopener" aria-label="YouTube" data-en="YouTube" data-zh="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <!-- <a class="ic" href="https://www.instagram.com/YOUR-HANDLE/" target="_blank" rel="noopener" aria-label="Instagram" data-en="Instagram" data-zh="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a> --></div>
+      <span style="width:100%;margin-top:10px">© <span class="yy">2026</span> Kangning Du</span>
+    </div>
+  </main>
+
+  <!-- ================= PHOTOGRAPH ================= -->
+  <figure class="photo" style="margin:0">
+    <img id="photo" src="assets/kangning-coast.jpg" alt="Kangning Du on a coastal path at sunset, laughing" style="object-position:50% 50%">
+  </figure>
   </div>
+</div>
 
-  <div class="quick-facts">
-    <div class="wrap facts">
-      <div class="fact reveal"><span class="label" data-t="fact1Label">Areas of work</span><strong data-t="fact1">Research · Teaching · Practice</strong></div>
-      <div class="fact reveal" style="--d:.08s"><span class="label" data-t="fact2Label">Research</span><strong data-t="fact2">Social understanding and mental wellbeing</strong></div>
-      <div class="fact reveal" style="--d:.16s"><span class="label" data-t="fact3Label">Languages</span><strong data-t="fact3">English and Chinese</strong></div>
-    </div>
-  </div>
-
-  <section id="about" class="section">
-    <div class="wrap">
-      <div class="section-head reveal" data-t="aboutLabel">01 / About</div>
-      <div class="about-grid">
-        <p class="about-lead reveal" data-t="aboutLead">Kangning Du is a Lecturer in the School of Psychological Sciences at Macquarie University and a Registered Psychologist in Australia and New Zealand.</p>
-        <p class="body-copy reveal" style="--d:.12s" data-t="aboutBody">Her work sits at the intersection of psychology research, education, and practice. Her interests span social and developmental psychology, cross-cultural perspectives, and mental wellbeing, with a focus on understanding how people connect, adapt, and thrive across different stages of life and cultural contexts.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="research" class="section research">
-    <div class="wrap">
-      <div class="section-head reveal" data-t="researchLabel">02 / Research</div>
-      <h2 class="reveal" data-h="researchTitle">Research <em>interests</em></h2>
-      <p class="intro reveal" data-t="researchLead">Questions about human connection, social attitudes, and access to mental health support.</p>
-      <div class="research-grid">
-        <article class="card reveal"><div class="num">01</div><h3 data-t="r1">Social understanding and development</h3><ul><li data-t="r1a">Empathy and prosocial behaviour across the lifespan</li><li data-t="r1b">Social understanding and child development</li><li data-t="r1c">Social identity and attitudes toward outgroups</li></ul></article>
-        <article class="card reveal" style="--d:.1s"><div class="num">02</div><h3 data-t="r2">Culture and social attitudes</h3><ul><li data-t="r2a">Prejudice, intergroup bias and prejudice reduction</li><li data-t="r2b">Cross-cultural psychology</li><li data-t="r2c">Asian mental health and wellbeing</li></ul></article>
-        <article class="card reveal" style="--d:.2s"><div class="num">03</div><h3 data-t="r3">Mental wellbeing and access</h3><ul><li data-t="r3a">Sustainable mental wellbeing</li><li data-t="r3b">Mental health in rural and underserved communities</li><li data-t="r3c">AI and psychological or mental health support</li></ul></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="support" class="section">
-    <div class="wrap">
-      <div class="section-head reveal" data-t="supportLabel">03 / Psychological support</div>
-      <h2 class="reveal" data-h="supportTitle">Areas of <em>psychological service</em></h2>
-      <p class="intro reveal" data-t="supportLead">Individual therapy and counselling, with attention to wellbeing, life transitions and cultural context.</p>
-      <ul class="services">
-        <li class="reveal" data-t="s1">Individual psychological therapy and counselling</li>
-        <li class="reveal" style="--d:.05s" data-t="s2">Mental health and wellbeing support</li>
-        <li class="reveal" style="--d:.1s" data-t="s3">Stress, adjustment and life transitions</li>
-        <li class="reveal" style="--d:.15s" data-t="s4">Cross-cultural and migrant mental health</li>
-        <li class="reveal" style="--d:.2s" data-t="s5">Support for young people and adults</li>
-        <li class="reveal" style="--d:.25s" data-t="s6">Bilingual services in English and Chinese</li>
-        <li class="reveal" style="--d:.3s" data-t="s7">Experience supporting ADHD and autism assessments</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="contact" class="section contact">
-    <div class="wrap">
-      <div class="section-head reveal" data-t="contactLabel">04 / Contact</div>
-      <h2 class="reveal" data-h="contactTitle">Connect with <em>Kangning</em></h2>
-      <p class="intro reveal" data-t="contactLead">For professional enquiries, research and updates, see the profiles below.</p>
-      <div class="email-block reveal"><strong>Email</strong><a class="email-link" href="mailto:kangning.du@mq.edu.au">kangning.du@mq.edu.au <span aria-hidden="true">↗</span></a></div>
-      <div class="profiles">
-        <a class="reveal" href="https://scholar.google.com/citations?user=tCz9viUAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
-        <a class="reveal" style="--d:.05s" href="https://www.researchgate.net/profile/Kangning-Du" target="_blank" rel="noopener noreferrer">ResearchGate <span aria-hidden="true">↗</span></a>
-        <a class="reveal" style="--d:.1s" href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener noreferrer">ORCID <span aria-hidden="true">↗</span></a>
-        <a class="reveal" style="--d:.15s" href="https://au.linkedin.com/in/kangning-du-b8341259" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-        <a class="reveal" style="--d:.2s" href="https://www.xiaohongshu.com/user/profile/562f384d4476081e3ec4e58b" target="_blank" rel="noopener noreferrer">Xiaohongshu <span aria-hidden="true">↗</span></a>
-        <a class="reveal" style="--d:.25s" href="https://www.youtube.com/@Kangningishere" target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer"><div class="wrap"><span>© <span id="year">2026</span> Kangning Du</span><span data-t="footer">Personal academic and professional profile</span></div></footer>
 
 <script>
-document.body.classList.remove('no-js');
-const zh={navAbout:'关于',navResearch:'研究方向',navSupport:'心理支持',navContact:'联系方式',heroLabel:'心理学 · 研究 · 心理健康',name:'Dr Kangning Du',job:'心理科学学院讲师',faculty:'医学、健康与人文科学学院',university:'麦考瑞大学',researchProfile:'探索人类行为的深层奥秘',registration:'澳大利亚及新西兰注册心理师',ctaContact:'联系我',ctaResearch:'了解研究',fact1Label:'工作方向',fact1:'研究 · 教学 · 心理实践',fact2Label:'研究领域',fact2:'社会理解与心理健康',fact3Label:'服务语言',fact3:'英语与中文',aboutLabel:'01 / 关于',aboutLead:'Kangning Du 是麦考瑞大学心理科学学院讲师，也是澳大利亚及新西兰注册心理师。',aboutBody:'她的工作位于心理学研究、教育与实践的交汇处。她的兴趣涵盖社会心理学、发展心理学、跨文化视角与心理健康，重点关注不同生命阶段和文化背景下，人们如何建立联系、适应变化并健康成长。',researchLabel:'02 / 研究方向',researchTitle:'研究<em>领域</em>',researchLead:'围绕人与人的联系、社会态度，以及心理健康支持的可及性展开研究。',r1:'社会理解与发展',r1a:'不同生命阶段的共情与亲社会行为',r1b:'社会理解与儿童发展',r1c:'社会认同与对外群体的态度',r2:'文化与社会态度',r2a:'偏见、群际偏见及减少偏见的方法',r2b:'跨文化心理学',r2c:'亚裔群体的心理健康与幸福感',r3:'心理健康与支持的可及性',r3a:'可持续的心理健康',r3b:'乡村及服务不足地区的心理健康',r3c:'人工智能与心理或心理健康支持',supportLabel:'03 / 心理支持',supportTitle:'心理<em>服务领域</em>',supportLead:'提供个体心理治疗与咨询，关注心理健康、生活变化及文化背景。',s1:'个体心理治疗与咨询',s2:'心理健康与幸福感支持',s3:'压力、适应问题与人生转变',s4:'跨文化及移民心理健康',s5:'为青少年与成年人提供支持',s6:'提供英语与普通话双语心理服务',s7:'具有协助 ADHD 与自闭症评估的经验',contactLabel:'04 / 联系方式',contactTitle:'联系 <em>Kangning</em>',contactLead:'如需了解研究、专业合作或最新动态，可访问以下资料页面。',footer:'个人学术与专业主页',portrait:'Kangning Du 的照片',capTitle:'注册心理师',capSub:'澳大利亚 · 新西兰'};
-const english={};
-document.querySelectorAll('[data-t]').forEach(el=>english[el.dataset.t]=el.textContent);
-document.querySelectorAll('[data-h]').forEach(el=>english[el.dataset.h]=el.innerHTML);
-const portrait=document.querySelector('[data-alt]'),englishAlt=portrait.alt;
-let current='en';
-
-function movePill(){
-  const pill=document.querySelector('.lang .pill'),btn=document.querySelector(`[data-lang="${current}"]`);
-  pill.style.width=btn.offsetWidth+'px';pill.style.transform=`translateX(${btn.offsetLeft-4}px)`;
+/* photographs used by views: add more here, then set data-photo on a view */
+const PHOTOS={coast:{src:'assets/kangning-coast.jpg',pos:'50% 50%',alt:'Kangning Du on a coastal path at sunset, laughing'}};
+const views=[...document.querySelectorAll('.view')],img=document.getElementById('photo');
+function show(id){
+  const v=document.getElementById('v-'+id)||document.getElementById('v-home');
+  views.forEach(x=>x.classList.toggle('on',x===v));
+  document.querySelectorAll('[data-go]').forEach(a=>a.classList.toggle('on',a.dataset.go===id&&!a.classList.contains('logo')));
+  const p=PHOTOS[v.dataset.photo];
+  if(p&&!img.src.endsWith(p.src)){img.classList.add('out');setTimeout(()=>{img.src=p.src;img.alt=p.alt;img.style.objectPosition=p.pos;img.classList.remove('out')},500)}
+  const g=document.querySelector(`[data-go="${id}"]`)?.closest('.group');if(g&&!g.classList.contains('open')){g.classList.add('open');g.querySelector('button').setAttribute('aria-expanded','true')}
+  document.title=id==='home'||!v.querySelector('h2')?'Kangning Du':v.querySelector('h2').textContent+' — Kangning Du';
 }
-function setLang(lang){
-  current=lang;document.documentElement.lang=lang;
-  document.querySelectorAll('[data-t]').forEach(el=>el.textContent=lang==='zh'?zh[el.dataset.t]:english[el.dataset.t]);
-  document.querySelectorAll('[data-h]').forEach(el=>el.innerHTML=lang==='zh'?zh[el.dataset.h]:english[el.dataset.h]);
-  portrait.alt=lang==='zh'?zh.portrait:englishAlt;
-  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
-  document.title=lang==='zh'?'Kangning Du｜心理学与研究':'Kangning Du | Psychology & Research';
-  movePill();
-  try{localStorage.setItem('kangning-language',lang)}catch{}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();const id=a.dataset.go;history.pushState(null,'','#'+id);show(id);if(innerWidth<=720&&id!=='home')document.getElementById('main').scrollIntoView({behavior:'smooth'})});
+addEventListener('popstate',()=>show(location.hash.slice(1)||'home'));
+document.querySelectorAll('.group>button').forEach(b=>b.addEventListener('click',()=>{const g=b.parentElement;if(innerWidth<=720){const f=g.querySelector('[data-go]');f.click();return}const o=!g.classList.contains('open');g.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o))}));
+show(location.hash.slice(1)||'home');
+/* language: English is in the HTML; Chinese lives here, keyed by data-i */
+const ZH={"0": "关于", "1": "关于", "2": "<i>^</i>研究", "3": "研究方向", "4": "项目", "5": "项目", "6": "发表", "7": "发表", "8": "<i>^</i>临床经验", "9": "服务领域", "10": "服务领域", "11": "工作方式", "12": "工作方式", "13": "教学", "14": "教学", "15": "<i>^</i>写作", "16": "文章", "17": "文章", "18": "随笔", "19": "随笔", "20": "联系", "21": "联系", "22": "邮箱", "23": "邮箱", "24": "小红书", "25": "小红书", "26": "心理学", "27": "受训成为心理师，因好奇成为研究者。", "28": "关心我们如何思考、感受、与他人建立联系，以及如何理解身边的世界。", "h3": "现居澳大利亚悉尼。", "30": "了解更多 <span class=\"arr\">↗</span>", "31": "我的大部分工作，都会回到同一个问题：人与人之间，是如何彼此理解的。", "32": "跨越年龄，跨越文化，也跨越“需要帮助”与“找到帮助”之间的那段距离。我以研究者的身份研究它，以心理师的身份面对它，也在麦考瑞大学心理科学学院以讲师的身份教授它。", "33": "我在新西兰奥塔哥大学获得博士学位，目前在新西兰和澳大利亚两地注册为心理师。在两个国家之间工作、在中英文之间切换，让我觉得文化不只是一个研究变量，更是人们真实生活的地方。", "34": "工作之外：长长的散步里拍下的照片，还有很多很多 Lana Del Rey。", "35": "简要信息", "36": "现职", "37": "博士", "38": "注册", "39": "研究", "40": "语言", "41": "悉尼 麦考瑞大学 心理科学学院 讲师", "42": "新西兰 奥塔哥大学", "43": "注册心理师 · 澳大利亚 <a class=\"v\" href=\"https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx\" target=\"_blank\" rel=\"noopener\">核实 ↗</a><br>注册心理师 · 新西兰 <a class=\"v\" href=\"https://psychologistsboard.org.nz/\" target=\"_blank\" rel=\"noopener\">核实 ↗</a>", "44": "共情、偏见、文化与心理健康 · <a class=\"u\" href=\"#research\" data-go=\"research\">更多</a>", "45": "英语、中文", "46": "研究方向", "47": "围绕人与人的联系、社会态度，以及心理健康支持的可及性展开研究。", "48": "社会理解与发展", "49": "不同生命阶段的共情与亲社会行为 · 社会理解与儿童发展 · 社会认同与对外群体的态度", "50": "文化与社会态度", "51": "偏见、群际偏见及减少偏见的方法 · 跨文化心理学 · 亚裔群体的心理健康与幸福感", "52": "心理健康与支持的可及性", "53": "可持续的心理健康 · 乡村及服务不足地区的心理健康 · 人工智能与心理健康支持", "54": "完整、最新的发表记录，在以下三个地方。", "55": "引用", "56": "论文", "57": "代表作", "58": "三到五篇代表论文，各附一句简介——待补充。", "59": "提供个体心理治疗与咨询，关注心理健康、人生转变与文化背景。在澳大利亚和新西兰注册执业，可使用英语和中文。", "60": "<span>01</span>个体心理治疗与咨询", "61": "<span>02</span>心理健康与幸福感支持", "62": "<span>03</span>压力、适应问题与人生转变", "63": "<span>04</span>跨文化及移民心理健康", "64": "<span>05</span>为青少年与成年人提供支持", "65": "<span>06</span>英语与普通话双语心理服务", "66": "<span>07</span>具有协助 ADHD 与自闭症评估的经验", "67": "写给普通读者的心理学。", "68": "<span>—</span>第一篇即将发布", "69": "当前的学术项目——待补充。", "70": "用你自己的话，写几句你是如何与人一起工作的。", "71": "待补充。", "72": "麦考瑞大学 医学、健康与人文科学学院 心理科学学院讲师。", "73": "所授课程与教学兴趣——待补充。", "74": "更短、更私人的笔记——关于工作、地方，和留意到的事。", "75": "<span>—</span>即将发布", "76": "专业咨询、研究合作，或者只是想打个招呼。", "77": "悉尼 麦考瑞大学 心理科学学院", "78": "其他平台"};
+let lang='en';
+function setLang(l){
+  lang=l;document.documentElement.lang=l==='zh'?'zh-CN':'en';
+  document.querySelectorAll('[data-i]').forEach(el=>{if(el._en==null)el._en=el.innerHTML;el.innerHTML=l==='zh'?ZH[el.dataset.i]:el._en});
+  document.querySelectorAll('.lang [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)));
+  const c=document.getElementById('cap');if(c)c.textContent=l==='zh'?'其他平台':'Elsewhere';
+  img.alt=l==='zh'?'Kangning Du 在海边小路上，迎着夕阳大笑':PHOTOS.coast.alt;
+  show(location.hash.slice(1)||'home');
+  try{localStorage.setItem('kd-lang',l)}catch(e){}
 }
-document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-try{if(localStorage.getItem('kangning-language')==='zh')setLang('zh')}catch{}
-movePill();
-window.addEventListener('resize',movePill);
-if(document.fonts)document.fonts.ready.then(movePill);
-document.getElementById('year').textContent=new Date().getFullYear();
+document.querySelectorAll('.lang [data-lang]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.lang!==lang)setLang(b.dataset.lang)}));
+try{if(localStorage.getItem('kd-lang')==='zh')setLang('zh')}catch(e){}
+document.querySelectorAll('#y,.yy').forEach(e=>e.textContent=new Date().getFullYear());
 
-/* header + progress + active link */
-const header=document.querySelector('.site-header'),bar=document.querySelector('.progress');
-const navLinks=[...document.querySelectorAll('.links a')];
-const sections=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
-function onScroll(){
-  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
-  header.classList.toggle('scrolled',y>20);
-  bar.style.transform=`scaleX(${max>0?y/max:0})`;
-  let idx=-1;sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.4)idx=i});
-  navLinks.forEach((a,i)=>a.classList.toggle('active',i===idx));
-}
-addEventListener('scroll',onScroll,{passive:true});onScroll();
+/* social captions */
+(function(){const cap=document.getElementById('cap');if(!cap)return;let t;
+  const set=txt=>{clearTimeout(t);cap.classList.add('swap');t=setTimeout(()=>{cap.textContent=txt;cap.classList.remove('swap')},180)};
+  document.querySelectorAll('#social .ic').forEach(a=>{a.addEventListener('mouseenter',()=>set(lang==='zh'?a.dataset.zh:a.dataset.en));a.addEventListener('mouseleave',()=>set(lang==='zh'?'其他平台':'Elsewhere'))});
+})();
 
-/* reveal on scroll */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-
+/* pointer: soft cursor with motion blur, warm light, photo parallax */
+(function(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  const H=document.documentElement;H.classList.add('pf');
+  const cur=document.querySelector('.cur'),ring=document.querySelector('.ring'),ph=document.querySelector('.photo'),blur=document.getElementById('mbb');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,gx=mx,gy=my,lx=mx,ly=my,vx=0,vy=0,px=0,py=0,tpx=0,tpy=0,sc=1,tsc=1,run=false,still=0;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;H.classList.add('live');
+    /* photograph stays still: it is the subject */
+    if(!run){run=true;requestAnimationFrame(tick)}},{passive:true});
+  document.addEventListener('mouseleave',()=>H.classList.remove('live'));
+  addEventListener('mousedown',()=>ring.classList.add('down'));addEventListener('mouseup',()=>ring.classList.remove('down'));
+  document.addEventListener('mouseover',e=>ring.classList.toggle('hot',!!e.target.closest('a,button')));
+  function tick(){
+    vx+=((mx-lx)-vx)*.35;vy+=((my-ly)-vy)*.35;lx=mx;ly=my;
+    rx+=(mx-rx)*.2;ry+=(my-ry)*.2;gx+=(mx-gx)*.06;gy+=(my-gy)*.06;
+    px+=(tpx-px)*.08;py+=(tpy-py)*.08;sc+=(tsc-sc)*.06;
+    const sp=Math.hypot(vx,vy),a=Math.atan2(vy,vx)*57.3,st=Math.min(sp/38,1.1);
+    cur.style.transform=`translate3d(${mx}px,${my}px,0)`;
+    ring.style.transform=`translate3d(${rx}px,${ry}px,0) rotate(${a}deg) scale(${1+st},${1-st*.28})`;
+    ring.style.filter=sp>2?`blur(${Math.min(sp/22,2.6).toFixed(2)}px)`:'none';
+    const moving=sp>.05||Math.abs(mx-rx)>.1||Math.abs(mx-gx)>.5||Math.abs(tpx-px)>.05||Math.abs(tsc-sc)>.0005;
+    if(moving){requestAnimationFrame(tick)}else{run=false}
+  }
+})();
+/* nav marker: a small dot sits beside the current page and glides to whichever item the pointer rests on */
+(function(){
+  const nav=document.getElementById('nav'),m=document.createElement('span');m.className='navmark';m.setAttribute('aria-hidden','true');nav.appendChild(m);
+  function to(el){if(!el||!el.offsetParent){m.classList.remove('on');return}const r=el.getBoundingClientRect(),n=nav.getBoundingClientRect();
+    m.style.transform=`translate3d(${(r.left-n.left).toFixed(1)}px,${(r.top-n.top+r.height/2).toFixed(1)}px,0)`;m.classList.add('on')}
+  const home=()=>to(nav.querySelector('a.on'));
+  nav.addEventListener('mouseover',e=>{const a=e.target.closest('a,button');if(a)to(a)});
+  nav.addEventListener('mouseleave',()=>setTimeout(home,80));
+  document.addEventListener('click',()=>setTimeout(home,560));
+  addEventListener('popstate',()=>setTimeout(home,560));addEventListener('resize',home);
+  setTimeout(home,300);document.fonts&&document.fonts.ready.then(home);
+})();
 </script>
 </body>
 </html>

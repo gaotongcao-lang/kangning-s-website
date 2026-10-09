@@ -69,6 +69,8 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--ink);outline-offset
 .lang button::after{content:"";position:absolute;left:0;right:.18em;bottom:-3px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
 .lang button[aria-pressed=true]::after{transform:scaleX(1)}
 .lang button[data-lang=zh]{letter-spacing:.12em}
+.drawer{display:contents}
+.menu-btn{display:none}
 .side-foot{margin-top:26px;font-size:13.5px;color:var(--ink)}
 .social{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;max-width:270px}
 .ic{position:relative;display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--mute);border-radius:50%;color:var(--grey);overflow:hidden;isolation:isolate;transition:color .45s ease,border-color .45s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
@@ -186,30 +188,44 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
   .photo{grid-column:2;width:min(100%,720px);margin-bottom:60px}
 }
 @media (max-width:720px){
-  body{font-size:18.5px}
+  body{font-size:18px}
   .frame{display:flex;flex-direction:column;padding:0}
-  .side{order:1}.photo{order:2}.text{order:3}
-  .side{position:static;height:auto;padding:26px 20px 10px;justify-content:flex-start}
-  .nav{margin-top:20px}
-  .side-foot,.side>.social,.social-cap{display:none}
-  .mobile-social .social{margin:0 0 6px;max-width:none;gap:10px}
-  .side{position:relative}
-  .lang{position:absolute;top:30px;right:20px;margin:0}
-  .nav{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:17px}
+  /* top bar */
+  .side{order:1;position:sticky;top:0;z-index:40;height:auto;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) 22px 14px;background:var(--paper);border-bottom:1px solid transparent;transition:border-color .3s}
+  .side.scrolled{border-bottom-color:var(--rule)}
+  .logo{position:relative;z-index:2;margin:0;min-width:0}
+  .logo .l1{font-size:clamp(15px,4.4vw,18px);letter-spacing:.11em}
+  .logo .l2{margin-top:5px;font-size:10px;letter-spacing:.34em}
+  .menu-btn{position:relative;z-index:2;display:block;flex:none;padding:8px 0 8px 12px;border:0;background:none;font:inherit;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+  /* full-screen menu */
+  .drawer{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;padding:calc(96px + env(safe-area-inset-top,0px)) 22px calc(28px + env(safe-area-inset-bottom,0px));background:var(--paper);overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s .45s}
+  .side.open .drawer{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s}
+  .nav{display:block;margin:0;font-size:25px;line-height:1.55}
+  .nav>li+li{margin-top:6px}
+  .nav a:hover{transform:none}
+  .nav .group{margin:14px 0 4px}
+  .nav .group>button,.nav .group.open>button{pointer-events:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--grey)}
   .nav .group>button i{display:none}
-  .nav .sub{display:none}
-  .nav .group{margin:0}
-  .nav .group>button,.nav .group.open>button{font-size:17px;color:var(--ink)}
-  .nav .group:has(a.on)>button{color:var(--accent)}
-  .stage{display:contents}
-  .photo{width:100%;aspect-ratio:1702/1276;margin:18px 0 0}
-  .text{padding:38px 20px 50px}
+  .nav .sub,.nav .group.open .sub{max-height:none;padding:2px 0 0}
+  .lang{position:static;margin-top:36px;font-size:13px}
+  .side-foot{display:block;margin-top:auto;padding-top:30px}
+  .side>.drawer>.social{display:flex;margin-top:14px;max-width:none;gap:10px}
+  .social-cap{display:none}
+  /* content */
+  .photo{order:2;width:100%;aspect-ratio:1702/1276;margin:0}
+  .frame:has(.view:not(.home).on) .photo{display:none}
+  .text{order:3;width:auto;max-width:none;padding:34px 22px calc(48px + env(safe-area-inset-bottom,0px))}
+  .view h2{font-size:32px;margin-bottom:22px}
+  .view.home p{font-size:19px}
   .kv{grid-template-columns:104px 1fr}
-  .view h2{margin-bottom:24px}
   .elsewhere{grid-template-columns:1fr}
-  .brief{grid-template-columns:90px 1fr}
-  .credit{position:static;display:block;margin:0 20px 24px;border:0}
-  .mobile-social{display:flex!important;flex-wrap:wrap;gap:8px 16px;margin-top:40px;font-size:14.5px;color:var(--grey)}
+  .brief{grid-template-columns:96px 1fr}
+  .records a{font-size:20px}
+  .mail{font-size:24px}
+  .mobile-social{display:flex!important;flex-wrap:wrap;gap:8px 16px;margin-top:48px;padding-top:22px;border-top:1px solid var(--rule);font-size:14.5px;color:var(--grey)}
+  .mobile-social .social{margin:0 0 6px;max-width:none;gap:10px}
+  body.menu-open{overflow:hidden}
+  html[lang=zh-CN] .nav{font-size:22px;letter-spacing:.08em}
 }
 .mobile-social{display:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -223,6 +239,8 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
   <!-- ================= SIDEBAR ================= -->
   <aside class="side">
     <a class="logo" href="#home" data-go="home" aria-label="Kangning Du — home"><span class="l1">KANGNING DU<span class="cn" lang="zh-CN">杜康宁</span></span><span class="l2">PSYCHOLOGY</span></a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="drawer"><span data-i="menu">Menu</span></button>
+    <div class="drawer" id="drawer">
     <ul class="nav" id="nav">
       <li><a href="#about" data-go="about" data-i="0">About</a></li>
       <li class="group open"><button type="button" aria-expanded="true" data-i="2"><i>^</i>Research</button>
@@ -257,6 +275,7 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
       <!-- <a class="ic" href="https://www.instagram.com/YOUR-HANDLE/" target="_blank" rel="noopener" aria-label="Instagram" data-en="Instagram" data-zh="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a> -->
     </div>
     <p class="social-cap" aria-hidden="true"><span id="cap">Elsewhere</span></p>
+    </div>
   </aside>
 
   <!-- ================= CENTRE TEXT ================= -->
@@ -404,12 +423,21 @@ function show(id){
   const g=document.querySelector(`[data-go="${id}"]`)?.closest('.group');if(g&&!g.classList.contains('open')){g.classList.add('open');g.querySelector('button').setAttribute('aria-expanded','true')}
   document.title=id==='home'||!v.querySelector('h2')?'Kangning Du':v.querySelector('h2').textContent+' — Kangning Du';
 }
-document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();const id=a.dataset.go;history.pushState(null,'','#'+id);show(id);if(innerWidth<=720&&id!=='home')document.getElementById('main').scrollIntoView({behavior:'smooth'})});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();const id=a.dataset.go;history.pushState(null,'','#'+id);show(id);if(innerWidth<=720){closeMenu();scrollTo(0,0)}});
 addEventListener('popstate',()=>show(location.hash.slice(1)||'home'));
-document.querySelectorAll('.group>button').forEach(b=>b.addEventListener('click',()=>{const g=b.parentElement;if(innerWidth<=720){const f=g.querySelector('[data-go]');f.click();return}const o=!g.classList.contains('open');g.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o))}));
+document.querySelectorAll('.group>button').forEach(b=>b.addEventListener('click',()=>{const g=b.parentElement;if(innerWidth<=720)return;const o=!g.classList.contains('open');g.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o))}));
 show(location.hash.slice(1)||'home');
+/* mobile menu */
+const side=document.querySelector('.side'),mbtn=document.querySelector('.menu-btn');
+function closeMenu(){side.classList.remove('open');document.body.classList.remove('menu-open');mbtn.setAttribute('aria-expanded','false');setMenuLabel()}
+function setMenuLabel(){const o=side.classList.contains('open'),zh=document.documentElement.lang==='zh-CN';mbtn.firstElementChild.textContent=o?(zh?'关闭':'Close'):(zh?'菜单':'Menu')}
+mbtn.addEventListener('click',()=>{const o=!side.classList.contains('open');side.classList.toggle('open',o);document.body.classList.toggle('menu-open',o);mbtn.setAttribute('aria-expanded',String(o));setMenuLabel()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+addEventListener('scroll',()=>side.classList.toggle('scrolled',scrollY>4),{passive:true});
+addEventListener('resize',()=>{if(innerWidth>720)closeMenu()});
+
 /* language: English is in the HTML; Chinese lives here, keyed by data-i */
-const ZH={"0": "关于", "1": "关于", "2": "<i>^</i>研究", "3": "研究方向", "4": "项目", "5": "项目", "6": "发表", "7": "发表", "8": "<i>^</i>临床经验", "9": "服务领域", "10": "服务领域", "11": "工作方式", "12": "工作方式", "13": "教学", "14": "教学", "15": "<i>^</i>写作", "16": "文章", "17": "文章", "18": "随笔", "19": "随笔", "20": "联系", "21": "联系", "22": "邮箱", "23": "邮箱", "24": "小红书", "25": "小红书", "26": "心理学", "27": "受训成为心理师，因好奇成为研究者。", "28": "关心我们如何思考、感受、与他人建立联系，以及如何理解身边的世界。", "h3": "现居澳大利亚悉尼。", "30": "了解更多 <span class=\"arr\">↗</span>", "31": "我的大部分工作，都会回到同一个问题：人与人之间，是如何彼此理解的。", "32": "跨越年龄，跨越文化，也跨越“需要帮助”与“找到帮助”之间的那段距离。我以研究者的身份研究它，以心理师的身份面对它，也在麦考瑞大学心理科学学院以讲师的身份教授它。", "33": "我在新西兰奥塔哥大学获得博士学位，目前在新西兰和澳大利亚两地注册为心理师。在两个国家之间工作、在中英文之间切换，让我觉得文化不只是一个研究变量，更是人们真实生活的地方。", "34": "工作之外：长长的散步里拍下的照片，还有很多很多 Lana Del Rey。", "35": "简要信息", "36": "现职", "37": "博士", "38": "注册", "39": "研究", "40": "语言", "41": "悉尼 麦考瑞大学 心理科学学院 讲师", "42": "新西兰 奥塔哥大学", "43": "注册心理师 · 澳大利亚 <a class=\"v\" href=\"https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx\" target=\"_blank\" rel=\"noopener\">核实 ↗</a><br>注册心理师 · 新西兰 <a class=\"v\" href=\"https://psychologistsboard.org.nz/\" target=\"_blank\" rel=\"noopener\">核实 ↗</a>", "44": "共情、偏见、文化与心理健康 · <a class=\"u\" href=\"#research\" data-go=\"research\">更多</a>", "45": "英语、中文", "46": "研究方向", "47": "围绕人与人的联系、社会态度，以及心理健康支持的可及性展开研究。", "48": "社会理解与发展", "49": "不同生命阶段的共情与亲社会行为 · 社会理解与儿童发展 · 社会认同与对外群体的态度", "50": "文化与社会态度", "51": "偏见、群际偏见及减少偏见的方法 · 跨文化心理学 · 亚裔群体的心理健康与幸福感", "52": "心理健康与支持的可及性", "53": "可持续的心理健康 · 乡村及服务不足地区的心理健康 · 人工智能与心理健康支持", "54": "完整、最新的发表记录，在以下三个地方。", "55": "引用", "56": "论文", "57": "代表作", "58": "三到五篇代表论文，各附一句简介——待补充。", "59": "提供个体心理治疗与咨询，关注心理健康、人生转变与文化背景。在澳大利亚和新西兰注册执业，可使用英语和中文。", "60": "<span>01</span>个体心理治疗与咨询", "61": "<span>02</span>心理健康与幸福感支持", "62": "<span>03</span>压力、适应问题与人生转变", "63": "<span>04</span>跨文化及移民心理健康", "64": "<span>05</span>为青少年与成年人提供支持", "65": "<span>06</span>英语与普通话双语心理服务", "66": "<span>07</span>具有协助 ADHD 与自闭症评估的经验", "67": "写给普通读者的心理学。", "68": "<span>—</span>第一篇即将发布", "69": "当前的学术项目——待补充。", "70": "用你自己的话，写几句你是如何与人一起工作的。", "71": "待补充。", "72": "麦考瑞大学 医学、健康与人文科学学院 心理科学学院讲师。", "73": "所授课程与教学兴趣——待补充。", "74": "更短、更私人的笔记——关于工作、地方，和留意到的事。", "75": "<span>—</span>即将发布", "76": "专业咨询、研究合作，或者只是想打个招呼。", "77": "悉尼 麦考瑞大学 心理科学学院", "78": "其他平台"};
+const ZH={"menu": "菜单", "0": "关于", "1": "关于", "2": "<i>^</i>研究", "3": "研究方向", "4": "项目", "5": "项目", "6": "发表", "7": "发表", "8": "<i>^</i>临床经验", "9": "服务领域", "10": "服务领域", "11": "工作方式", "12": "工作方式", "13": "教学", "14": "教学", "15": "<i>^</i>写作", "16": "文章", "17": "文章", "18": "随笔", "19": "随笔", "20": "联系", "21": "联系", "22": "邮箱", "23": "邮箱", "24": "小红书", "25": "小红书", "26": "心理学", "27": "受训成为心理师，因好奇成为研究者。", "28": "关心我们如何思考、感受、与他人建立联系，以及如何理解身边的世界。", "h3": "现居澳大利亚悉尼。", "30": "了解更多 <span class=\"arr\">↗</span>", "31": "我的大部分工作，都会回到同一个问题：人与人之间，是如何彼此理解的。", "32": "跨越年龄，跨越文化，也跨越“需要帮助”与“找到帮助”之间的那段距离。我以研究者的身份研究它，以心理师的身份面对它，也在麦考瑞大学心理科学学院以讲师的身份教授它。", "33": "我在新西兰奥塔哥大学获得博士学位，目前在新西兰和澳大利亚两地注册为心理师。在两个国家之间工作、在中英文之间切换，让我觉得文化不只是一个研究变量，更是人们真实生活的地方。", "34": "工作之外：长长的散步里拍下的照片，还有很多很多 Lana Del Rey。", "35": "简要信息", "36": "现职", "37": "博士", "38": "注册", "39": "研究", "40": "语言", "41": "悉尼 麦考瑞大学 心理科学学院 讲师", "42": "新西兰 奥塔哥大学", "43": "注册心理师 · 澳大利亚 <a class=\"v\" href=\"https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx\" target=\"_blank\" rel=\"noopener\">核实 ↗</a><br>注册心理师 · 新西兰 <a class=\"v\" href=\"https://psychologistsboard.org.nz/\" target=\"_blank\" rel=\"noopener\">核实 ↗</a>", "44": "共情、偏见、文化与心理健康 · <a class=\"u\" href=\"#research\" data-go=\"research\">更多</a>", "45": "英语、中文", "46": "研究方向", "47": "围绕人与人的联系、社会态度，以及心理健康支持的可及性展开研究。", "48": "社会理解与发展", "49": "不同生命阶段的共情与亲社会行为 · 社会理解与儿童发展 · 社会认同与对外群体的态度", "50": "文化与社会态度", "51": "偏见、群际偏见及减少偏见的方法 · 跨文化心理学 · 亚裔群体的心理健康与幸福感", "52": "心理健康与支持的可及性", "53": "可持续的心理健康 · 乡村及服务不足地区的心理健康 · 人工智能与心理健康支持", "54": "完整、最新的发表记录，在以下三个地方。", "55": "引用", "56": "论文", "57": "代表作", "58": "三到五篇代表论文，各附一句简介——待补充。", "59": "提供个体心理治疗与咨询，关注心理健康、人生转变与文化背景。在澳大利亚和新西兰注册执业，可使用英语和中文。", "60": "<span>01</span>个体心理治疗与咨询", "61": "<span>02</span>心理健康与幸福感支持", "62": "<span>03</span>压力、适应问题与人生转变", "63": "<span>04</span>跨文化及移民心理健康", "64": "<span>05</span>为青少年与成年人提供支持", "65": "<span>06</span>英语与普通话双语心理服务", "66": "<span>07</span>具有协助 ADHD 与自闭症评估的经验", "67": "写给普通读者的心理学。", "68": "<span>—</span>第一篇即将发布", "69": "当前的学术项目——待补充。", "70": "用你自己的话，写几句你是如何与人一起工作的。", "71": "待补充。", "72": "麦考瑞大学 医学、健康与人文科学学院 心理科学学院讲师。", "73": "所授课程与教学兴趣——待补充。", "74": "更短、更私人的笔记——关于工作、地方，和留意到的事。", "75": "<span>—</span>即将发布", "76": "专业咨询、研究合作，或者只是想打个招呼。", "77": "悉尼 麦考瑞大学 心理科学学院", "78": "其他平台"};
 let lang='en';
 function setLang(l){
   lang=l;document.documentElement.lang=l==='zh'?'zh-CN':'en';
@@ -417,7 +445,7 @@ function setLang(l){
   document.querySelectorAll('.lang [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)));
   const c=document.getElementById('cap');if(c)c.textContent=l==='zh'?'其他平台':'Elsewhere';
   img.alt=l==='zh'?'Kangning Du 在海边小路上，迎着夕阳大笑':PHOTOS.coast.alt;
-  show(location.hash.slice(1)||'home');
+  show(location.hash.slice(1)||'home');setMenuLabel();
   try{localStorage.setItem('kd-lang',l)}catch(e){}
 }
 document.querySelectorAll('.lang [data-lang]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.lang!==lang)setLang(b.dataset.lang)}));

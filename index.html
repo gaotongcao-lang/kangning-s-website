@@ -103,7 +103,7 @@ a:hover>.arr{transform:translate(2px,-2px)}
 .brief>*{padding:10px 0;border-bottom:1px solid var(--rule);margin:0}
 .brief dt{color:var(--grey)}
 .brief dd{min-width:0}
-.brief .v{color:var(--grey);font-size:14.5px;margin-left:6px;border-bottom:1px solid var(--rule)}
+.brief .v{white-space:nowrap;color:var(--grey);font-size:14.5px;margin-left:6px;border-bottom:1px solid var(--rule)}
 .brief .v:hover{color:var(--ink);border-color:var(--ink)}
 /* research: three themes */
 .themes{list-style:none;padding:0;margin-top:34px}
@@ -133,6 +133,9 @@ a:hover>.arr{transform:translate(2px,-2px)}
 .view.home p+p{margin-top:14px}
 .view.home .more{margin-top:36px}
 .view p+p{margin-top:14px}
+.story p+p{margin-top:16px}
+.story .close{margin-top:26px!important;font-family:var(--serif);font-style:italic;font-size:1.08em}
+html[lang=zh-CN] .story .close{font-style:normal}
 .view .meta{margin-top:40px;color:var(--grey);font-size:13px}
 .view .meta em{font-style:italic;color:var(--ink)}
 .list{list-style:none;padding:0;margin-top:26px;border-top:1px solid var(--rule)}
@@ -256,11 +259,7 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
           <li><a href="#projects" data-go="projects" data-i="4">Projects</a></li>
           <li><a href="#publications" data-go="publications" data-i="6">Publications</a></li>
         </ul></li>
-      <li class="group open"><button type="button" aria-expanded="true" data-i="8"><i>^</i>Clinical Experience</button>
-        <ul class="sub">
-          <li><a href="#clinical" data-go="clinical" data-i="9">Areas of practice</a></li>
-          <li><a href="#approach" data-go="approach" data-i="11">Approach</a></li>
-        </ul></li>
+      <li><a href="#clinical" data-go="clinical" data-i="9">Clinical Practice</a></li>
       <li><a href="#teaching" data-go="teaching" data-i="13">Teaching</a></li>
       <li class="group"><button type="button" aria-expanded="false" data-i="15"><i>^</i>Writing</button>
         <ul class="sub">
@@ -298,16 +297,17 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
 
     <section class="view" id="v-about" data-photo="coast">
       <h2 data-i="1">About</h2>
-      <!-- DRAFT in Kangning's voice — please read and rewrite freely. -->
       <p class="lead" data-i="31">Most of my work comes back to one question: how people come to understand each other.</p>
-      <p data-i="32">Across ages, across cultures, and across the distance between needing support and finding it. I study it as a researcher, meet it as a psychologist, and teach it at Macquarie University, where I am a Lecturer in the School of Psychological Sciences.</p>
-      <p data-i="33">I did my PhD at the University of Otago in New Zealand, and I am registered as a psychologist in both New Zealand and Australia. Working between two countries, and between English and Chinese, has made culture feel less like a variable and more like the place people actually live.</p>
-      <p data-i="34">Away from work: photographs taken on long walks, and a lot of Lana Del Rey.</p>
+      <div class="story" data-i="aboutBody">
+        <p>That question runs through my research, teaching, and clinical practice. I am currently a Lecturer in the School of Psychological Sciences at Macquarie University, and a registered psychologist in both Australia and New Zealand.</p>
+        <p>I completed my PhD in Psychology at the University of Otago, where my research focused on social understanding, empathy, and intergroup attitudes. Having lived and worked across different countries and cultures, I have become increasingly interested in how our experiences shape the ways we connect with others and understand ourselves.</p>
+        <p>Away from work: photographs taken on long walks, and a lot of Lana Del Rey.</p>
+      </div>
       <h3 data-i="35">In brief</h3>
       <dl class="brief">
         <dt data-i="36">Now</dt><dd data-i="41">Lecturer, School of Psychological Sciences, Macquarie University, Sydney</dd>
-        <dt data-i="37">PhD</dt><dd data-i="42">University of Otago, New Zealand</dd>
-        <dt data-i="38">Registration</dt><dd data-i="43">Psychologist, Australia <a class="v" href="https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx" target="_blank" rel="noopener">verify ↗</a><br>Psychologist, New Zealand <a class="v" href="https://psychologistsboard.org.nz/" target="_blank" rel="noopener">verify ↗</a></dd>
+        <dt data-i="37">PhD</dt><dd data-i="42">PhD in Psychology, University of Otago, New Zealand</dd>
+        <dt data-i="38">Registration</dt><dd data-i="43">Registered Psychologist, Australia <a class="v" href="https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx" target="_blank" rel="noopener">verify ↗</a><br>Registered Psychologist, New Zealand <a class="v" href="https://psychologistsboard.org.nz/" target="_blank" rel="noopener">verify ↗</a></dd>
         <dt data-i="39">Research</dt><dd data-i="44">Empathy, prejudice, culture and mental wellbeing · <a class="u" href="#research" data-go="research">more</a></dd>
         <dt>ORCID</dt><dd><a class="u" href="https://orcid.org/0000-0002-5466-2937" target="_blank" rel="noopener">0000-0002-5466-2937</a></dd>
         <dt data-i="40">Languages</dt><dd data-i="45">English, Chinese</dd>
@@ -337,17 +337,15 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
     </section>
 
     <section class="view" id="v-clinical" data-photo="coast">
-      <h2 data-i="10">Areas of practice</h2>
-      <p data-i="59">Individual therapy and counselling, with attention to wellbeing, life transitions and cultural context. Registered as a psychologist in Australia and New Zealand, working in English and Chinese.</p>
-      <ul class="list">
-        <li data-i="60"><span>01</span>Individual psychological therapy and counselling</li>
-        <li data-i="61"><span>02</span>Mental health and wellbeing support</li>
-        <li data-i="62"><span>03</span>Stress, adjustment and life transitions</li>
-        <li data-i="63"><span>04</span>Cross-cultural and migrant mental health</li>
-        <li data-i="64"><span>05</span>Support for young people and adults</li>
-        <li data-i="65"><span>06</span>Bilingual services in English and Chinese</li>
-        <li data-i="66"><span>07</span>Experience supporting ADHD and autism assessments</li>
-      </ul>
+      <h2 data-i="10">Clinical Practice</h2>
+      <p class="lead" data-i="clinLead">Life can feel heavy sometimes, especially when you’re trying to figure out who you are, where you belong, or how to manage expectations coming from different directions.</p>
+      <div class="story" data-i="clinBody">
+        <p>My clinical work has involved supporting children, young people, and adults experiencing anxiety, low mood, stress, life transitions, relationship difficulties, and challenges associated with ADHD and autism. I have a particular interest in working with people navigating different cultures, identities, and family expectations.</p>
+        <p>Having lived and worked across different countries and cultures, I understand how our backgrounds and experiences can shape the way we see ourselves, relate to others, and make sense of the world.</p>
+        <p>My approach is warm, respectful, and down-to-earth. I draw primarily on Cognitive Behavioural Therapy (CBT) and Acceptance and Commitment Therapy (ACT), while recognising that everyone brings their own experiences, needs, and goals.</p>
+        <p>Sometimes the work involves finding practical ways to cope. Other times, it’s about having the space to talk things through, reflect, and make sense of what matters.</p>
+        <p class="close">Above all, I believe everyone deserves to feel heard, understood, and taken seriously.</p>
+      </div>
     </section>
 
     <section class="view" id="v-writing" data-photo="coast">
@@ -359,12 +357,6 @@ html[lang=zh-CN] .nav{letter-spacing:.06em}
     <section class="view" id="v-projects" data-photo="coast">
       <h2 data-i="5">Projects</h2>
       <p class="ph-note" data-i="69">Current academic projects — to be added.</p>
-    </section>
-
-    <section class="view" id="v-approach" data-photo="coast">
-      <h2 data-i="12">Approach</h2>
-      <p class="quote" data-i="70">A few sentences, in your own words, about how you work with people.</p>
-      <p class="ph-note" style="margin-top:22px" data-i="71">To be added.</p>
     </section>
 
     <section class="view" id="v-teaching" data-photo="coast">
@@ -445,7 +437,7 @@ addEventListener('scroll',()=>side.classList.toggle('scrolled',scrollY>4),{passi
 addEventListener('resize',()=>{if(innerWidth>720)closeMenu()});
 
 /* language: English is in the HTML; Chinese lives here, keyed by data-i */
-const ZH={"0": "关于", "1": "关于", "2": "<i>^</i>研究", "3": "研究方向", "4": "项目", "5": "项目", "6": "发表", "7": "发表", "8": "<i>^</i>临床经验", "9": "服务领域", "10": "服务领域", "11": "工作方式", "12": "工作方式", "13": "教学", "14": "教学", "15": "<i>^</i>写作", "16": "文章", "17": "文章", "18": "随笔", "19": "随笔", "20": "联系", "21": "联系", "22": "邮箱", "23": "邮箱", "24": "小红书", "25": "小红书", "26": "心理学", "27": "受训成为心理师，因好奇成为研究者。", "28": "关心我们如何思考、感受、与他人建立联系，以及如何理解身边的世界。", "h3": "现居澳大利亚悉尼。", "30": "了解更多 <span class=\"arr\">↗</span>", "31": "我的大部分工作，都会回到同一个问题：人与人之间，是如何彼此理解的。", "32": "跨越年龄，跨越文化，也跨越“需要帮助”与“找到帮助”之间的那段距离。我以研究者的身份研究它，以心理师的身份面对它，也在麦考瑞大学心理科学学院以讲师的身份教授它。", "33": "我在新西兰奥塔哥大学获得博士学位，目前在新西兰和澳大利亚两地注册为心理师。在两个国家之间工作、在中英文之间切换，让我觉得文化不只是一个研究变量，更是人们真实生活的地方。", "34": "工作之外：长长的散步里拍下的照片，还有很多很多 Lana Del Rey。", "35": "简要信息", "36": "现职", "37": "博士", "38": "注册", "39": "研究", "40": "语言", "41": "悉尼 麦考瑞大学 心理科学学院 讲师", "42": "新西兰 奥塔哥大学", "43": "注册心理师 · 澳大利亚 <a class=\"v\" href=\"https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx\" target=\"_blank\" rel=\"noopener\">核实 ↗</a><br>注册心理师 · 新西兰 <a class=\"v\" href=\"https://psychologistsboard.org.nz/\" target=\"_blank\" rel=\"noopener\">核实 ↗</a>", "44": "共情、偏见、文化与心理健康 · <a class=\"u\" href=\"#research\" data-go=\"research\">更多</a>", "45": "英语、中文", "46": "研究方向", "47": "围绕人与人的联系、社会态度，以及心理健康支持的可及性展开研究。", "48": "社会理解与发展", "49": "不同生命阶段的共情与亲社会行为 · 社会理解与儿童发展 · 社会认同与对外群体的态度", "50": "文化与社会态度", "51": "偏见、群际偏见及减少偏见的方法 · 跨文化心理学 · 亚裔群体的心理健康与幸福感", "52": "心理健康与支持的可及性", "53": "可持续的心理健康 · 乡村及服务不足地区的心理健康 · 人工智能与心理健康支持", "54": "完整、最新的发表记录，在以下三个地方。", "55": "引用", "56": "论文", "57": "代表作", "58": "三到五篇代表论文，各附一句简介——待补充。", "59": "提供个体心理治疗与咨询，关注心理健康、人生转变与文化背景。在澳大利亚和新西兰注册执业，可使用英语和中文。", "60": "<span>01</span>个体心理治疗与咨询", "61": "<span>02</span>心理健康与幸福感支持", "62": "<span>03</span>压力、适应问题与人生转变", "63": "<span>04</span>跨文化及移民心理健康", "64": "<span>05</span>为青少年与成年人提供支持", "65": "<span>06</span>英语与普通话双语心理服务", "66": "<span>07</span>具有协助 ADHD 与自闭症评估的经验", "67": "写给普通读者的心理学。", "68": "<span>—</span>第一篇即将发布", "69": "当前的学术项目——待补充。", "70": "用你自己的话，写几句你是如何与人一起工作的。", "71": "待补充。", "72": "麦考瑞大学 医学、健康与人文科学学院 心理科学学院讲师。", "73": "所授课程与教学兴趣——待补充。", "74": "更短、更私人的笔记——关于工作、地方，和留意到的事。", "75": "<span>—</span>即将发布", "76": "专业咨询、研究合作，或者只是想打个招呼。", "77": "悉尼 麦考瑞大学 心理科学学院", "78": "其他平台"};
+const ZH={"0": "关于我", "1": "关于我", "2": "<i>^</i>研究", "3": "研究方向", "4": "项目", "5": "项目", "6": "发表", "7": "发表", "9": "临床心理工作", "10": "临床心理工作", "13": "教学", "14": "教学", "15": "<i>^</i>写作", "16": "文章", "17": "文章", "18": "随笔", "19": "随笔", "20": "联系我", "21": "联系我", "22": "邮箱", "23": "邮箱", "24": "小红书", "25": "小红书", "26": "心理学", "27": "以心理学家为业，因好奇而做研究。", "28": "关心我们如何思考、感受、与他人建立联系，以及如何理解身边的世界。", "h3": "现居澳大利亚悉尼。", "30": "了解更多 <span class=\"arr\">↗</span>", "31": "我的研究、教学和临床工作，常常围绕着同一个问题：人与人之间，是如何理解彼此的？", "35": "简要信息", "36": "现职", "37": "博士", "38": "注册", "39": "研究", "40": "语言", "41": "悉尼 麦考瑞大学 心理科学学院 讲师", "42": "心理学博士，新西兰奥塔哥大学", "43": "注册心理学家 · 澳大利亚 <a class=\"v\" href=\"https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx\" target=\"_blank\" rel=\"noopener\">核实 ↗</a><br>注册心理学家 · 新西兰 <a class=\"v\" href=\"https://psychologistsboard.org.nz/\" target=\"_blank\" rel=\"noopener\">核实 ↗</a>", "44": "共情、偏见、文化与心理健康 · <a class=\"u\" href=\"#research\" data-go=\"research\">更多</a>", "45": "英语、中文", "46": "研究方向", "47": "围绕人与人的联系、社会态度，以及心理健康支持的可及性展开研究。", "48": "社会理解与发展", "49": "不同生命阶段的共情与亲社会行为 · 社会理解与儿童发展 · 社会认同与对外群体的态度", "50": "文化与社会态度", "51": "偏见、群际偏见及减少偏见的方法 · 跨文化心理学 · 亚裔群体的心理健康与幸福感", "52": "心理健康与支持的可及性", "53": "可持续的心理健康 · 乡村及服务不足地区的心理健康 · 人工智能与心理健康支持", "54": "完整、最新的发表记录，在以下三个地方。", "55": "引用", "56": "论文", "57": "代表作", "58": "三到五篇代表论文，各附一句简介——待补充。", "67": "写给普通读者的心理学。", "68": "<span>—</span>第一篇即将发布", "69": "当前的学术项目——待补充。", "72": "麦考瑞大学 医学、健康与人文科学学院 心理科学学院讲师。", "73": "所授课程与教学兴趣——待补充。", "74": "更短、更私人的笔记——关于工作、地方，和留意到的事。", "75": "<span>—</span>即将发布", "76": "专业咨询、研究合作，或者只是想打个招呼。", "77": "悉尼 麦考瑞大学 心理科学学院", "78": "其他平台", "aboutBody": "<p>目前，我在澳大利亚麦考瑞大学（Macquarie University）心理科学学院担任讲师，同时也是澳大利亚和新西兰的注册心理学家。</p><p>我在新西兰奥塔哥大学获得心理学博士学位，研究主要关注社会认知、共情，以及人们对不同群体的态度。</p><p>这些年，我曾在不同国家生活、学习和工作。跨文化的经历，也让我越来越好奇：我们的成长环境、文化背景和人生经历，是如何影响我们理解自己、与他人建立联系，以及看待这个世界的方式。</p><p>工作之外，我喜欢散步时随手拍照，也喜欢听 Lana Del Rey。</p>", "clinLead": "生活有时候并不容易。尤其当我们还在摸索自己是谁、属于哪里，或是努力应对来自家庭、社会和自身的种种期待时。", "clinBody": "<p>在过去的临床工作中，我曾为儿童、青少年和成年人提供心理支持，帮助他们应对焦虑、情绪低落、压力、生活变化、人际关系困扰，以及与 ADHD 和自闭症相关的挑战。</p><p>我尤其关注那些在不同文化、身份认同和家庭期待之间寻找平衡的人。</p><p>这些年在不同国家生活和工作的经历，让我更加理解，一个人的成长背景、文化和生活经历，会如何影响他们看待自己、理解他人，以及面对生活中种种挑战的方式。</p><p>在心理咨询中，我希望保持温和、尊重和真诚的态度。我的工作主要以认知行为疗法（CBT）和接纳与承诺疗法（ACT）为基础，同时也相信，每个人都有不同的经历、需要和目标。</p><p>有时候，我们会一起寻找更实际的应对方式；有时候，我们只是需要一个空间，可以慢慢把事情说出来，整理思绪，想清楚什么对自己真正重要。</p><p class=\"close\">我始终相信，每个人的故事都值得被倾听，每个人的感受都值得被理解和认真对待。</p>"};
 let lang='en';
 function setLang(l){
   lang=l;document.documentElement.lang=l==='zh'?'zh-CN':'en';
